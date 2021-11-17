@@ -784,11 +784,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1352229363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b9f7d30da247e4db65ea4bce788646, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c3441d18597f674da90f20fa120d69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
   jumpForce: 30
+  isJumping: 0
+  moveHorizontal: 0
+  moveVertical: 0
+  _rigidbody: {fileID: 0}
 --- !u!61 &1352229368
 BoxCollider2D:
   m_ObjectHideFlags: 0
