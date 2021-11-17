@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
       if (moveHorizontal > 0.1f || moveHorizontal < -0.1f) {
         _rigidbody.AddForce(new Vector2(moveHorizontal * movementSpeed, 0f), ForceMode2D.Impulse);
       }
-
       if (!isJumping && moveVertical > 0.1f) {
         _rigidbody.AddForce(new Vector2(0f, moveVertical * jumpForce), ForceMode2D.Impulse);
       }
