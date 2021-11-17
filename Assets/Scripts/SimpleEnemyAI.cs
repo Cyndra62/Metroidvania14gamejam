@@ -7,7 +7,7 @@ public class SimpleEnemyAI : MonoBehaviour {
   public bool mustPatrol;
   private bool mustTurn;
 
-  public Rigidbody2D rigidbody;
+  public new Rigidbody2D rigidbody;
   public Transform groundCheckPos;
   public LayerMask groundLayer;
   public Collider2D bodyCollider;
