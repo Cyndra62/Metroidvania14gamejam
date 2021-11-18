@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maximumSteps: 1
   walkSpeed: 50
-  chaseSpeed: 3
+  chaseSpeed: 2
   lineOfSight: 7
   playerRb: {fileID: 1352229366}
 --- !u!70 &864486806
@@ -789,10 +789,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2
   jumpForce: 30
-  isJumping: 0
-  moveHorizontal: 0
-  moveVertical: 0
-  _rigidbody: {fileID: 0}
 --- !u!61 &1352229368
 BoxCollider2D:
   m_ObjectHideFlags: 0

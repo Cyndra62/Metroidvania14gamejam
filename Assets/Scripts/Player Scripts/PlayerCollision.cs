@@ -19,11 +19,11 @@ public class PlayerCollision : MonoBehaviour
     public Vector2 _bottomOffset, _rightOffset, _leftOffset;
     private Color _debugCollisionColor = Color.green;
 
-    
-    void Update() 
+
+    void Update()
     {
         _onGround = Physics2D.OverlapCircle((Vector2)transform.position + _bottomOffset, _collisionRadius, _groundLayer);
-        _onWall = Physics2D.OverlapCircle((Vector2)transform.position + _rightOffset, _collisionRadius, _groundLayer) 
+        _onWall = Physics2D.OverlapCircle((Vector2)transform.position + _rightOffset, _collisionRadius, _groundLayer)
             || Physics2D.OverlapCircle((Vector2)transform.position + _leftOffset, _collisionRadius, _groundLayer);
 
         _onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + _rightOffset, _collisionRadius, _groundLayer);
@@ -43,4 +43,3 @@ public class PlayerCollision : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + _leftOffset, _collisionRadius);
     }
 }
-
