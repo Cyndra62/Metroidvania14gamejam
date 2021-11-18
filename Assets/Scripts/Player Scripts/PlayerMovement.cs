@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [Header ("Booleans")]
     [SerializeField] public bool _isDoubleJump = true;
     [SerializeField] private bool _pushingWall = false;
-    [SerializeField] private bool _facingRight = true;
+    [SerializeField] public bool _facingRight = true;
     [SerializeField] public bool _wallJump = false;
     [SerializeField] public int _leftOrRight;
     private void Start() 
