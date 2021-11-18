@@ -8,18 +8,20 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D _rb;
 
-    public bool _isDoubleJump = true;
-
     [Header ("Movement Variables")]
     [SerializeField] private float _speed;
     [SerializeField] private float _slideSpeed;
     [SerializeField] private float _jumpVelocity;
-
-
+    [SerializeField] private float _wallJumpVelocityX;
+    [SerializeField] private float _wallJumpVelocityY;
     
 
+    [Header ("Booleans")]
+    [SerializeField] public bool _isDoubleJump = true;
     [SerializeField] private bool _pushingWall = false;
-
+    [SerializeField] private bool _facingRight = true;
+    [SerializeField] public bool _wallJump = false;
+    [SerializeField] public int _leftOrRight;
     private void Start() 
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -40,26 +42,52 @@ public class PlayerMovement : MonoBehaviour
         if(_playerCollision._onGround)
         {
             _isDoubleJump= true;
+            _wallJump = false;
         }
         
         if((_rb.velocity.x > 0 && _playerCollision._onRightWall) || (_rb.velocity.x < 0 && _playerCollision._onLeftWall))
         {
             _pushingWall = true;
+            
         }
         else
         {
             _pushingWall = false;
         }
+
+        if(_pushingWall == true && !_playerCollision._onGround && Input.GetButtonDown("Jump"))
+        {
+            _wallJump = true;
+            Invoke ("CancelWallJump",0.2f);
+        }
+
+        if(_wallJump)
+        {
+            WallJump();
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             if(_playerCollision._onGround)
             {
-                Jump(Vector2.up, false, false);
+                Jump(Vector2.up, false);
             }
             else if(!_playerCollision._onGround && _isDoubleJump==true && _pushingWall==false)
             {
-                Jump(Vector2.up, false, true);
+                Jump(Vector2.up, true);
             }
+        }
+
+        
+        if(_facingRight == false && x > 0)
+        {
+            FlipCharacter();
+            _leftOrRight = -1;
+        }
+        else if( _facingRight == true && x < 0)
+        {
+            FlipCharacter();
+            _leftOrRight = 1;
         }
 
         
@@ -72,7 +100,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallSlide()
     {
+        
         _rb.velocity = new Vector2(_rb.velocity.x, - _slideSpeed);
+        FlipCharacter();
     }
 
     private void Walk(Vector2 dir)
@@ -80,16 +110,32 @@ public class PlayerMovement : MonoBehaviour
        _rb.velocity = new Vector2(dir.x * _speed, _rb.velocity.y);
     }
     
-    private void Jump(Vector2 dir, bool isWall, bool isDoubleJump)
+    private void Jump(Vector2 dir, bool isDoubleJump)
     {
-        _rb.velocity = new Vector2(_rb.velocity.x, 0);
-        _rb.velocity += dir * _jumpVelocity;
-        
         if(isDoubleJump == true)
         {
             _isDoubleJump= false;
         }
+
+            _rb.velocity = new Vector2(_rb.velocity.x, 0);
+            _rb.velocity += dir * _jumpVelocity;
+        
     }
-    
+
+    private void WallJump()
+    {
+        _rb.velocity = new Vector2(_wallJumpVelocityX * _leftOrRight, _wallJumpVelocityY);
+    }
+    void CancelWallJump()
+    {
+        _wallJump = false;
+    }
+    void FlipCharacter()
+    {
+        _facingRight = !_facingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
+    }
     
 }
