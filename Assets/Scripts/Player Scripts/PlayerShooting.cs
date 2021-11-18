@@ -8,6 +8,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject _player;
     public Transform _shotPoint;
     public GameObject _halo;
+    public GameObject _ammoBelt;
 
     [Space]
     public float _launchForce;
@@ -18,9 +19,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject newHalo;
 
     [Header ("Ammo Info")]
-    [SerializeField] public int _ammoCount = 0;
+    [SerializeField] public int _ammoCount = 2;
     [SerializeField] private bool _canShoot;
-    [SerializeField] public GameObject[] _ammoLineup;
+    [SerializeField] public List<GameObject> _ammoLineup = new List<GameObject>();
 
     private Collider2D _playerCollider;
     public PlayerMovement _playerMovement;
@@ -31,7 +32,9 @@ public class PlayerShooting : MonoBehaviour
         _playerArm = _player.transform.GetChild(0).gameObject;
         _playerMovement = GetComponent<PlayerMovement>();
         _playerCollider = _player.GetComponent<Collider2D>();
-        
+        _ammoLineup.Add(_ammoBelt.transform.GetChild(0).gameObject);
+        _ammoLineup.Add(_ammoBelt.transform.GetChild(1).gameObject);
+        _ammoLineup.Add(_ammoBelt.transform.GetChild(2).gameObject);
     }
     private void FixedUpdate() 
     {
@@ -63,7 +66,7 @@ public class PlayerShooting : MonoBehaviour
     void Shoot()
     {
         
-        if(_ammoCount < 3)
+        if(_ammoCount >=0)
         {
             _canShoot = true;
         }
@@ -73,22 +76,21 @@ public class PlayerShooting : MonoBehaviour
         }
         if(_canShoot)
         {
-            if(_ammoCount==0)
+            if(_ammoCount==2)
             {
-                newHalo = Instantiate(_ammoLineup[_ammoCount]);
-                _ammoCount++;
+                newHalo =_ammoLineup[_ammoCount].gameObject;
             }
             else if(_ammoCount==1)
             {
-                newHalo = Instantiate(_ammoLineup[_ammoCount]);
-                _ammoCount++;
+                newHalo =_ammoLineup[_ammoCount].gameObject;
             }
-            else if(_ammoCount==2)
+            else if(_ammoCount==0)
             {
-                newHalo = Instantiate(_ammoLineup[_ammoCount]);
-                _ammoCount++;
+                newHalo = _ammoLineup[_ammoCount].gameObject;
             }
-        
+
+            newHalo.SetActive(true);
+            Physics2D.IgnoreCollision(newHalo.GetComponent<Collider2D>(), _playerCollider);
             newHalo.transform.position = _shotPoint.position;
             newHalo.transform.rotation =  Quaternion.Euler(0,0, _rotZ);
 
@@ -100,9 +102,20 @@ public class PlayerShooting : MonoBehaviour
             {
                 newHalo.GetComponent<Rigidbody2D>().velocity = (_shotPoint.right * _launchForce) *-1;
             }
+            _ammoLineup.RemoveAt(_ammoCount);
+            _ammoCount--;
             
-            Collider2D newHaloCollider = newHalo.GetComponent<Collider2D>();
-            Physics2D.IgnoreCollision(newHaloCollider, _playerCollider);
             }
+    }
+
+    public void Reload(GameObject halo)
+    {
+        _ammoLineup.Add(halo);
+        _ammoCount++;
+    }
+
+    public void Pickup(GameObject halo)
+    {
+        Physics2D.IgnoreCollision(halo.GetComponent<Collider2D>(), _playerCollider, false);
     }
 }
