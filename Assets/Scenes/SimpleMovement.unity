@@ -396,11 +396,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617652cc92e9fe44dab393205c78adce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDoubleJump: 0
   _speed: 5
   _slideSpeed: 2
   _jumpVelocity: 4
+  _wallJumpVelocityX: 15
+  _wallJumpVelocityY: 4
+  _isDoubleJump: 0
   _pushingWall: 0
+  _facingRight: 1
+  _wallJump: 0
 --- !u!114 &1738436609
 MonoBehaviour:
   m_ObjectHideFlags: 0
