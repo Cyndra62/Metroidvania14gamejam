@@ -45,7 +45,6 @@ public class ChasingEnemyAI : MonoBehaviour
       Destroy(gameObject);
     }
     _directionToPlayer = playerRb.position - _rigidbody.position;
-    Debug.Log(_directionToPlayer.x);
     if (Mathf.Abs(_directionToPlayer.x) < lineOfSight && Mathf.Abs(_directionToPlayer.y) < 1)
     {
       _chaseEnemy = true;
