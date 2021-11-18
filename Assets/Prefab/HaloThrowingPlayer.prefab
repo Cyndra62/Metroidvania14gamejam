@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091824164207873211}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.0174, y: -0.0072, z: 0.02249718}
+  m_LocalPosition: {x: -0.053, y: 0.0323, z: 0.02249718}
   m_LocalScale: {x: 0.49999994, y: 0.50000006, z: 1}
   m_Children: []
   m_Father: {fileID: 8233678258140200395}
@@ -257,6 +257,7 @@ MonoBehaviour:
   _bottomOffset: {x: 0, y: -0.29}
   _rightOffset: {x: 0.18, y: 0}
   _leftOffset: {x: -0.18, y: 0}
+  _playerShooting: {fileID: 0}
 --- !u!114 &7506924741823340932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,9 +271,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 8233678256866150538}
-  _halo: {fileID: 2375016652335776156, guid: caa0cfb1de5ad784eabed81b6a9f8c82, type: 3}
-  _launchForce: 10
   _shotPoint: {fileID: 1501775579393174525}
+  _halo: {fileID: 2375016652335776156, guid: caa0cfb1de5ad784eabed81b6a9f8c82, type: 3}
+  _ammoBelt: {fileID: 4924705729794853110, guid: 3ba381c9687d0b34e80b465f51589f57, type: 3}
+  _launchForce: 10
+  newHalo: {fileID: 0}
+  _ammoCount: 2
+  _canShoot: 0
+  _ammoLineup: []
   _playerMovement: {fileID: 8233678256866150519}
 --- !u!1 &8233678258140200392
 GameObject:

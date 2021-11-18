@@ -19,7 +19,17 @@ public class PlayerCollision : MonoBehaviour
     public Vector2 _bottomOffset, _rightOffset, _leftOffset;
     private Color _debugCollisionColor = Color.green;
 
+    [Space]
 
+    [Header("Halo Collision")]
+    public PlayerShooting _playerShooting;
+    //List<GameObject> _ammoLineup = new List<GameObject>();
+
+    private void Start() 
+    {
+        _playerShooting = gameObject.GetComponent<PlayerShooting>();
+        //_ammoLineup = _playerShooting._ammoLineup;
+    }
     void Update()
     {
         _onGround = Physics2D.OverlapCircle((Vector2)transform.position + _bottomOffset, _collisionRadius, _groundLayer);
@@ -30,6 +40,8 @@ public class PlayerCollision : MonoBehaviour
         _onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + _leftOffset, _collisionRadius, _groundLayer);
 
         _wallSide = _onRightWall ? -1 : 1;
+
+        
     }
 
     void OnDrawGizmos()
