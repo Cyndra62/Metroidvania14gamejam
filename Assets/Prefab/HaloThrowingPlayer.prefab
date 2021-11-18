@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1091824164207873211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1501775579393174525}
+  m_Layer: 0
+  m_Name: shotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1501775579393174525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091824164207873211}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.0174, y: -0.0072, z: 0.02249718}
+  m_LocalScale: {x: 0.49999994, y: 0.50000006, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8233678258140200395}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3297798455619761055
 GameObject:
   m_ObjectHideFlags: 0
@@ -23,14 +53,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3297798455619761055}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0054410645, w: 0.9999852}
-  m_LocalPosition: {x: -0.049994946, y: -0.09021735, z: -1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0047950996, w: 0.99998856}
+  m_LocalPosition: {x: -0.0694, y: -0.089, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 8233678258140200395}
   m_Father: {fileID: 8233678256866150512}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.624}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.549}
 --- !u!1 &8233678256866150538
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,9 +76,10 @@ GameObject:
   - component: {fileID: 8233678256866150519}
   - component: {fileID: 8233678256866150516}
   - component: {fileID: 8233678256866150517}
+  - component: {fileID: 7506924741823340932}
   m_Layer: 0
   m_Name: HaloThrowingPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +139,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 264ce3fd9ac33cc47acf6873c29a1843, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d314947bfbd6044bb0b4d95ddb59ef9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,6 +257,23 @@ MonoBehaviour:
   _bottomOffset: {x: 0, y: -0.29}
   _rightOffset: {x: 0.18, y: 0}
   _leftOffset: {x: -0.18, y: 0}
+--- !u!114 &7506924741823340932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233678256866150538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f6203de00488e4388a02e0b6382570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 8233678256866150538}
+  _halo: {fileID: 2375016652335776156, guid: caa0cfb1de5ad784eabed81b6a9f8c82, type: 3}
+  _launchForce: 10
+  _shotPoint: {fileID: 1501775579393174525}
+  _playerMovement: {fileID: 8233678256866150519}
 --- !u!1 &8233678258140200392
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,13 +298,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8233678258140200392}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.039800346, y: -0.019599736, z: 0}
+  m_LocalRotation: {x: -0.0047950996, y: 0.99998856, z: -0, w: 0}
+  m_LocalPosition: {x: 0.059830047, y: -0.021392683, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1501775579393174525}
   m_Father: {fileID: 3082501935119974743}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &8233678258140200394
 SpriteRenderer:
   m_ObjectHideFlags: 0
