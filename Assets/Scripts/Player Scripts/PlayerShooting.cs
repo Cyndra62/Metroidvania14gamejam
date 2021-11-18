@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    [Header ("Player Info")]
     public GameObject _player;
-
-    public GameObject _halo;
-    public float _launchForce;
     public Transform _shotPoint;
+    public GameObject _halo;
+
+    [Space]
+    public float _launchForce;
     private GameObject _playerArm;
-    
     private float _rotZ;
+
+    [Space]
+    [SerializeField] private GameObject newHalo;
+
+    [Header ("Ammo Info")]
+    [SerializeField] public int _ammoCount = 0;
+    [SerializeField] private bool _canShoot;
+    [SerializeField] public GameObject[] _ammoLineup;
 
     private Collider2D _playerCollider;
     public PlayerMovement _playerMovement;
+
+
     private void Start() 
     {
         _playerArm = _player.transform.GetChild(0).gameObject;
@@ -51,22 +62,47 @@ public class PlayerShooting : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject newHalo = Instantiate(_halo);
-        newHalo.transform.position = _shotPoint.position;
-        newHalo.transform.rotation =  Quaternion.Euler(0,0, _rotZ);
-
-        if(_playerMovement._facingRight==true)
+        
+        if(_ammoCount < 3)
         {
-            newHalo.GetComponent<Rigidbody2D>().velocity = _shotPoint.right * _launchForce;
+            _canShoot = true;
         }
         else
         {
-            newHalo.GetComponent<Rigidbody2D>().velocity = (_shotPoint.right * _launchForce) *-1;
+            _canShoot = false;
         }
+        if(_canShoot)
+        {
+            if(_ammoCount==0)
+            {
+                newHalo = Instantiate(_ammoLineup[_ammoCount]);
+                _ammoCount++;
+            }
+            else if(_ammoCount==1)
+            {
+                newHalo = Instantiate(_ammoLineup[_ammoCount]);
+                _ammoCount++;
+            }
+            else if(_ammoCount==2)
+            {
+                newHalo = Instantiate(_ammoLineup[_ammoCount]);
+                _ammoCount++;
+            }
         
-        
-        Collider2D newHaloCollider = newHalo.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(newHaloCollider, _playerCollider);
-        
+            newHalo.transform.position = _shotPoint.position;
+            newHalo.transform.rotation =  Quaternion.Euler(0,0, _rotZ);
+
+            if(_playerMovement._facingRight==true)
+            {
+                newHalo.GetComponent<Rigidbody2D>().velocity = _shotPoint.right * _launchForce;
+            }
+            else
+            {
+                newHalo.GetComponent<Rigidbody2D>().velocity = (_shotPoint.right * _launchForce) *-1;
+            }
+            
+            Collider2D newHaloCollider = newHalo.GetComponent<Collider2D>();
+            Physics2D.IgnoreCollision(newHaloCollider, _playerCollider);
+            }
     }
 }

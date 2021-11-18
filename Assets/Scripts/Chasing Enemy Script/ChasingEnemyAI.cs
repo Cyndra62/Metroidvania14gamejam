@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ChasingEnemyAI : MonoBehaviour
 {
@@ -11,6 +11,8 @@ public class ChasingEnemyAI : MonoBehaviour
   private bool _chaseEnemy;
   private bool _facingRight;
   private bool _mustFlip;
+
+  private int _health;
   
   public Transform onGroundChecker;
 
@@ -33,10 +35,15 @@ public class ChasingEnemyAI : MonoBehaviour
     _chaseEnemy = false;
     _facingRight = true;
     _mustFlip = false;
+    _health = 1;
   }
 
   void Update() 
   {
+    if (_health == 0)
+    {
+      Destroy(gameObject);
+    }
     _directionToPlayer = playerRb.position - _rigidbody.position;
     Debug.Log(_directionToPlayer.x);
     if (Mathf.Abs(_directionToPlayer.x) < lineOfSight && Mathf.Abs(_directionToPlayer.y) < 1)
@@ -59,6 +66,14 @@ public class ChasingEnemyAI : MonoBehaviour
     {
       _mustFlip = !Physics2D.OverlapCircle(onGroundChecker.position, 0.1f, groundLayer);
       Patrol();
+    }
+  }
+
+  private void OnCollisionEnter2D(Collision2D other)
+  {
+    if (other.gameObject.CompareTag("Bullet"))
+    {
+      _health -= 1;
     }
   }
 

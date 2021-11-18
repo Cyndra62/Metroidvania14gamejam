@@ -134,6 +134,22 @@ PrefabInstance:
       propertyPath: _launchForce
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7506924741823340932, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _ammoLineup.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506924741823340932, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _ammoLineup.Array.data[0]
+      value: 
+      objectReference: {fileID: 590794714753663215, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
+    - target: {fileID: 7506924741823340932, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _ammoLineup.Array.data[1]
+      value: 
+      objectReference: {fileID: 3407445583601860651, guid: 0bb5079def34222469224d2898feefee, type: 3}
+    - target: {fileID: 7506924741823340932, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _ammoLineup.Array.data[2]
+      value: 
+      objectReference: {fileID: 5262200028308345525, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
     - target: {fileID: 8233678256866150512, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_RootOrder
       value: 1
