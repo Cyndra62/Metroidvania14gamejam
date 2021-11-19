@@ -8,12 +8,11 @@ public class HaloProjectile : MonoBehaviour
     
     [SerializeField] private bool _wallCheck;
     public PlayerShooting _playerShooting;
-
+    public string _haloColor;
 
     private void Start() 
     {   
         _playerShooting = FindObjectOfType<PlayerShooting>();
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -28,7 +27,7 @@ public class HaloProjectile : MonoBehaviour
         }
         if(_wallCheck== true && other.gameObject.CompareTag("Player"))
         {
-            _playerShooting.Reload(gameObject);
+            _playerShooting.Reload(gameObject, _haloColor);
             gameObject.SetActive(false);
             _wallCheck= false;
         }
