@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngineInternal;
 
 namespace Jumping_Enemy
 {
@@ -9,17 +10,18 @@ namespace Jumping_Enemy
         
         [SerializeField] private Transform checkOnGround, checkHittingWall;
         [SerializeField] private LayerMask groundLayer;
-        [SerializeField] private float jumpForce, walkSpeed, maxDistance, lineOfSight, chaseSpeed;
+        [SerializeField] private float jumpForce, walkSpeed, maxDistance, lineOfSight;
         [SerializeField] private Rigidbody2D playerRigidbody;
 
         private bool _isOnGround;
         private bool _hittingWall;
         private bool _needsToJump;
         private bool _facingRight;
-        private bool _needsToFlip;
+        private bool _needsToFaceEnemy;
 
         private float _xOrigin;
         private float _distanceFromOrigin;
+        private float _timeToNextJump;
 
         private Vector2 _distanceToPlayer;
         private Vector2 _currentPosition;
@@ -31,9 +33,9 @@ namespace Jumping_Enemy
             _isOnGround = false;
             _hittingWall = false;
             _facingRight = true;
-            _needsToFlip = false;
             _xOrigin = _currentPosition.x;
             _distanceFromOrigin = 0f;
+            _timeToNextJump = 1f;
             _distanceToPlayer = _currentPosition - playerRigidbody.position;
         }
 
@@ -44,26 +46,44 @@ namespace Jumping_Enemy
             _isOnGround = Physics2D.OverlapCircle(checkOnGround.position, 0.1f, groundLayer);
             _hittingWall = Physics2D.OverlapCircle(checkHittingWall.position, 0.1f, groundLayer);
             _distanceToPlayer = playerRigidbody.position - _currentPosition;
-            _needsToJump = _distanceToPlayer.x < lineOfSight || _distanceToPlayer.y < lineOfSight;
-            _needsToFlip = _distanceToPlayer.x > 0 && !_facingRight || _distanceToPlayer.x < 0 && _facingRight;
+            if (!_needsToJump && Mathf.Abs(_distanceToPlayer.x) < lineOfSight)
+            {
+                _needsToJump = true;
+            }
+            _needsToFaceEnemy = (_distanceToPlayer.x > 0 && !_facingRight || _distanceToPlayer.x < 0 && _facingRight) && _needsToJump;
         }
 
         private void FixedUpdate()
         {
+            if (_hittingWall || (Mathf.Abs(_distanceFromOrigin) > maxDistance && !_needsToJump) || _needsToFaceEnemy)
+            {
+                Flip();
+            }
             if (_isOnGround)
             {
                 if (_needsToJump)
                 {
-                    _rigidbody.AddForce(new Vector2(_distanceToPlayer.x * chaseSpeed, jumpForce), ForceMode2D.Impulse);
+                    if (_timeToNextJump < 0)
+                    {
+                        if (_facingRight)
+                        {
+                            _rigidbody.AddForce(new Vector2(1, 1) * jumpForce, ForceMode2D.Impulse);
+                        }
+                        else
+                        {
+                            _rigidbody.AddForce(new Vector2(-1, 1) * jumpForce, ForceMode2D.Impulse);
+                        }
+                        _timeToNextJump = 1f;
+                    }
+                    else
+                    {
+                        _timeToNextJump -= Time.fixedDeltaTime;
+                    }
                 }
                 else
                 {
                     _rigidbody.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, _rigidbody.velocity.y);
                 }
-            }
-            if (_hittingWall || (Mathf.Abs(_distanceFromOrigin) > maxDistance && !_needsToJump) || _needsToFlip)
-            {
-                Flip();
             }
         }
 
