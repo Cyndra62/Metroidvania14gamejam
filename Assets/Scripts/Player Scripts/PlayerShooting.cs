@@ -8,6 +8,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject _player;
     public Transform _shotPoint;
     public GameObject _halo;
+    public GameObject _shootableHalo;
     public GameObject _ammoBelt;
 
     [Space]
@@ -19,12 +20,13 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject newHalo;
 
     [Header ("Ammo Info")]
-    [SerializeField] public int _ammoCount = 2;
+    [SerializeField] public int _ammoCount;
     [SerializeField] private bool _canShoot;
     [SerializeField] public List<GameObject> _ammoLineup = new List<GameObject>();
 
     private Collider2D _playerCollider;
     public PlayerMovement _playerMovement;
+    private HaloProjectile _haloProjectile;
 
 
     private void Start() 
@@ -32,9 +34,12 @@ public class PlayerShooting : MonoBehaviour
         _playerArm = _player.transform.GetChild(0).gameObject;
         _playerMovement = GetComponent<PlayerMovement>();
         _playerCollider = _player.GetComponent<Collider2D>();
-        _ammoLineup.Add(_ammoBelt.transform.GetChild(0).gameObject);
-        _ammoLineup.Add(_ammoBelt.transform.GetChild(1).gameObject);
-        _ammoLineup.Add(_ammoBelt.transform.GetChild(2).gameObject);
+        _haloProjectile = GetComponent<HaloProjectile>();
+
+        foreach(Transform halo in _shootableHalo.transform)
+        {
+            _ammoLineup.Add(halo.gameObject);
+        }
     }
     private void FixedUpdate() 
     {
@@ -65,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
     }
     void Shoot()
     {
-        
+        string haloName;
         if(_ammoCount >=0)
         {
             _canShoot = true;
@@ -88,6 +93,16 @@ public class PlayerShooting : MonoBehaviour
             {
                 newHalo = _ammoLineup[_ammoCount].gameObject;
             }
+            
+            haloName = newHalo.GetComponent<HaloProjectile>()._haloColor;
+
+            foreach(Transform child in _ammoBelt.transform)
+            {
+                if(child.gameObject.tag == haloName)
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
 
             newHalo.SetActive(true);
             Physics2D.IgnoreCollision(newHalo.GetComponent<Collider2D>(), _playerCollider);
@@ -104,14 +119,21 @@ public class PlayerShooting : MonoBehaviour
             }
             _ammoLineup.RemoveAt(_ammoCount);
             _ammoCount--;
-            
             }
     }
 
-    public void Reload(GameObject halo)
+    public void Reload(GameObject halo, string haloColor)
     {
         _ammoLineup.Add(halo);
         _ammoCount++;
+        
+        foreach(Transform child in _ammoBelt.transform)
+        {
+            if(child.gameObject.tag == haloColor)
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
     }
 
     public void Pickup(GameObject halo)
