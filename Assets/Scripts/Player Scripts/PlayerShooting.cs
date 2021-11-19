@@ -104,8 +104,8 @@ public class PlayerShooting : MonoBehaviour
                 }
             }
 
-            newHalo.SetActive(true);
             Physics2D.IgnoreCollision(newHalo.GetComponent<Collider2D>(), _playerCollider);
+            newHalo.SetActive(true);
             newHalo.transform.position = _shotPoint.position;
             newHalo.transform.rotation =  Quaternion.Euler(0,0, _rotZ);
 
