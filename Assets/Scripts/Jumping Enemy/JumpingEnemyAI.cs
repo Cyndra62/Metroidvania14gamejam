@@ -46,9 +46,17 @@ namespace Jumping_Enemy
             _isOnGround = Physics2D.OverlapCircle(checkOnGround.position, 0.1f, groundLayer);
             _hittingWall = Physics2D.OverlapCircle(checkHittingWall.position, 0.1f, groundLayer);
             _distanceToPlayer = playerRigidbody.position - _currentPosition;
-            if (!_needsToJump && Mathf.Abs(_distanceToPlayer.x) < lineOfSight)
+            if (Mathf.Abs(_distanceToPlayer.x) < lineOfSight)
             {
                 _needsToJump = true;
+                if (Mathf.Abs(_currentPosition.x - _xOrigin) > maxDistance)
+                {
+                    _xOrigin = _currentPosition.x;
+                }
+            }
+            else if (_needsToJump)
+            {
+                _needsToJump = false;
             }
             _needsToFaceEnemy = (_distanceToPlayer.x > 0 && !_facingRight || _distanceToPlayer.x < 0 && _facingRight) && _needsToJump;
         }
