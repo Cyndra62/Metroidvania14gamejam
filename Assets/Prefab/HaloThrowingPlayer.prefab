@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 8233678256866150517}
   - component: {fileID: 7506924741823340932}
   - component: {fileID: 5659680942542709836}
+  - component: {fileID: 8750637167688731863}
   m_Layer: 0
   m_Name: HaloThrowingPlayer
   m_TagString: Player
@@ -139,7 +140,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2008055601
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5115618752126089108, guid: 9e85ca271b935bc4f95c2c3cec011fa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -221,6 +222,7 @@ MonoBehaviour:
   _facingRight: 1
   _wallJump: 0
   _leftOrRight: 0
+  stopInput: 0
   anim: {fileID: 5659680942542709836}
   areaTransitionName: 
 --- !u!114 &8233678256866150516
@@ -304,6 +306,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8750637167688731863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233678256866150538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3be63d6401d2f40bb5e037c6053175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  setHealthOnStart: 1
+  maxHealth: 100
+  deathAction: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  healthBarHook:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8233678258140200392
 GameObject:
   m_ObjectHideFlags: 0
