@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091824164207873211}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.0739, y: 0.0005, z: 0.02249718}
+  m_LocalPosition: {x: -0.245, y: 0.012, z: 0.02249718}
   m_LocalScale: {x: 0.49999994, y: 0.50000006, z: 1}
   m_Children: []
   m_Father: {fileID: 8233678258140200395}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3297798455619761055}
   m_LocalRotation: {x: -0, y: -0, z: -0.0047950996, w: 0.99998856}
-  m_LocalPosition: {x: -0.0694, y: -0.089, z: -1}
+  m_LocalPosition: {x: -0.141, y: -0.035, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 8233678258140200395}
@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 8233678256866150516}
   - component: {fileID: 8233678256866150517}
   - component: {fileID: 7506924741823340932}
+  - component: {fileID: 5659680942542709836}
   m_Layer: 0
   m_Name: HaloThrowingPlayer
   m_TagString: Player
@@ -91,7 +92,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8233678256866150538}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
@@ -137,10 +138,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2008055601
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4d314947bfbd6044bb0b4d95ddb59ef9, type: 3}
+  m_Sprite: {fileID: -5115618752126089108, guid: 9e85ca271b935bc4f95c2c3cec011fa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -185,18 +186,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004986882, y: -0.040330306}
+  m_Offset: {x: -0.04654798, y: -0.1047488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.9, y: 0.69}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20862603, y: 0.23933938}
+  m_Size: {x: 0.28224707, y: 0.36817637}
   m_EdgeRadius: 0
 --- !u!114 &8233678256866150519
 MonoBehaviour:
@@ -220,6 +221,8 @@ MonoBehaviour:
   _facingRight: 1
   _wallJump: 0
   _leftOrRight: 0
+  anim: {fileID: 5659680942542709836}
+  areaTransitionName: 
 --- !u!114 &8233678256866150516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,9 +258,9 @@ MonoBehaviour:
   _onLeftWall: 0
   _wallSide: 0
   _collisionRadius: 0.05
-  _bottomOffset: {x: 0, y: -0.29}
-  _rightOffset: {x: 0.18, y: 0}
-  _leftOffset: {x: -0.18, y: 0}
+  _bottomOffset: {x: -0.1, y: -0.55}
+  _rightOffset: {x: 0.16, y: 0}
+  _leftOffset: {x: -0.35, y: 0}
   _playerShooting: {fileID: 0}
 --- !u!114 &7506924741823340932
 MonoBehaviour:
@@ -282,6 +285,25 @@ MonoBehaviour:
   _canShoot: 0
   _ammoLineup: []
   _playerMovement: {fileID: 8233678256866150519}
+--- !u!95 &5659680942542709836
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233678256866150538}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f397fba8a7c097048a5ac4d8a61de89e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8233678258140200392
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2940503178811451328, guid: 43311794769678c4db28e5a99133f527, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.194
+      value: 0.306
       objectReference: {fileID: 0}
     - target: {fileID: 2940503178811451328, guid: 43311794769678c4db28e5a99133f527, type: 3}
       propertyPath: m_LocalPosition.z

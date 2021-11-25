@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     private PlayerCollision _playerCollision;
 
     private Rigidbody2D _rb;
@@ -22,6 +23,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public bool _facingRight = true;
     [SerializeField] public bool _wallJump = false;
     [SerializeField] public int _leftOrRight;
+
+    [Header("Animation")]
+    public Animator anim;
+
+    [Header("Gate System")]
+    public string areaTransitionName;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start() 
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -90,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             _leftOrRight = 1;
         }
 
-        
+        anim.SetFloat("move", Mathf.Abs(_rb.velocity.x));
     }
 
     private static Vector2 GetInput()
