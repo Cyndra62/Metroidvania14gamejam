@@ -19,7 +19,7 @@ TagManager:
   - Ground
   - Bullet
   - Portal
-  - 
+  - Player
   - 
   - 
   - 
@@ -57,4 +57,7 @@ TagManager:
     locked: 0
   - name: Portal
     uniqueID: 1177847711
+    locked: 0
+  - name: UI
+    uniqueID: 4063684463
     locked: 0
