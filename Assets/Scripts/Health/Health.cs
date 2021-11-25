@@ -36,17 +36,6 @@ public class Health : MonoBehaviour
             health = maxHealth;
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Damage(10);
-        }
-
-        if (Input.GetMouseButtonDown(1))
-            Heal(2);
-    }
-
     public void Damage(float amount)
     {
         health -= amount;
