@@ -7,13 +7,26 @@ public class GateToUse : MonoBehaviour
 {
     public string gateToLoad;
     public string areaTransitionName;
+    public float waitToFade;
+    public Rigidbody2D _rb;
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(gateToLoad);
+            UiFade.instance.FadeToBlack();
             PlayerMovement.instance.areaTransitionName = areaTransitionName;
+            PlayerMovement.instance.stopInput = true;
+            StartCoroutine(TransitionCo());
         }
+    }
+
+    private IEnumerator TransitionCo()
+    {
+        yield return new WaitForSeconds(waitToFade);
+        PlayerMovement.instance.stopInput = false;
+        SceneManager.LoadScene(gateToLoad);
+
     }
 }
