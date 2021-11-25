@@ -18,7 +18,7 @@ TagManager:
   - UI
   - Ground
   - Bullet
-  - 
+  - Portal
   - 
   - 
   - 
@@ -43,6 +43,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: TileBackground
+    uniqueID: 3113789769
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2008055601
+    locked: 0
+  - name: Halo
+    uniqueID: 97486785
+    locked: 0
+  - name: Portal
+    uniqueID: 1177847711
     locked: 0

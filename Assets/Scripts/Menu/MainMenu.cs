@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void QuitGame()
+    public void QuitGame()
     {
         UiFade.instance.FadeToBlack();
         StartCoroutine(QuitGameCo());
@@ -45,5 +46,18 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(endTime);
         theSprite.raycastTarget = false;
+    }
+
+    public void NewGame()
+    {
+        UiFade.instance.FadeToBlack();
+        StartCoroutine(NewGameCo());
+
+    }
+
+    private IEnumerator NewGameCo()
+    {
+        yield return new WaitForSeconds(endTime);
+        SceneManager.LoadScene("TheHub");
     }
 }
