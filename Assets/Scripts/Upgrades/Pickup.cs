@@ -8,7 +8,7 @@ public class OnPickupEvent : UnityEvent<int> { }
 public class Pickup : MonoBehaviour
 {
     [Tooltip("Layer of the object that can pick this up")]
-    public LayerMask canPickup;
+    public LayerMask canPickup =  1 << 9; // Default layer: player
     [Tooltip("For example the ID of the upgrade picked up. This will be passed to the OnPickupEvent")]
     public int PickupID = 1;
     [Tooltip("Whether to Destroy(gameObject) on pickup")]
