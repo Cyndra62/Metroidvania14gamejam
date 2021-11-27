@@ -10,11 +10,16 @@ public class MainMenu : MonoBehaviour
     private float counterEnterScene;
     public float endTime;
     public Image theSprite;
+    [SerializeField] public Transform newGameposition;
 
     private void Start()
     {
         theSprite.raycastTarget = true;
         counterEnterScene = enterSceneTime;
+        if (PlayerMovement.instance.transform.position != newGameposition.transform.position)
+        {
+            PlayerMovement.instance.transform.position = newGameposition.transform.position;
+        }
     }
 
     private void Update()

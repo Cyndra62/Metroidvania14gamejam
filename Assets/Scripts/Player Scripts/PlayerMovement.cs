@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
     private PlayerCollision _playerCollision;
 
+
     private Rigidbody2D _rb;
 
     [Header ("Movement Variables")]
@@ -15,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _wallJumpVelocityX;
     [SerializeField] private float _wallJumpVelocityY;
-    
 
     [Header ("Booleans")]
     [SerializeField] public bool _isDoubleJump = true;
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!stopInput)
+        if (!PauseMenu.instance.isPause && !stopInput)
         {
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
