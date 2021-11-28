@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerCollision _playerCollision;
 
 
+
     private Rigidbody2D _rb;
 
     [Header ("Movement Variables")]

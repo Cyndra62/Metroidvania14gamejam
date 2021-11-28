@@ -10,16 +10,28 @@ public class MainMenu : MonoBehaviour
     private float counterEnterScene;
     public float endTime;
     public Image theSprite;
+    [SerializeField] GameObject continueButton;
     [SerializeField] public Transform newGameposition;
+    [SerializeField] public GameObject player;
 
     private void Start()
     {
+        if(PlayerPrefs.HasKey("Current_scene"))
+        {
+            continueButton.SetActive(true);
+        }
+        else
+        {
+            continueButton.SetActive(false);
+        }
+
         theSprite.raycastTarget = true;
         counterEnterScene = enterSceneTime;
-        if (PlayerMovement.instance.transform.position != newGameposition.transform.position)
+
+        /*if (PlayerMovement.instance.transform.position != newGameposition.transform.position)
         {
             PlayerMovement.instance.transform.position = newGameposition.transform.position;
-        }
+        }*/
     }
 
     private void Update()
@@ -56,6 +68,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         UiFade.instance.FadeToBlack();
+        PlayerPrefs.DeleteAll();
         StartCoroutine(NewGameCo());
 
     }
@@ -64,5 +77,11 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(endTime);
         SceneManager.LoadScene("TheHub");
+    }
+
+    public void Continue()
+    {
+        SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
+        //GameManager.instance.LoadData();
     }
 }
