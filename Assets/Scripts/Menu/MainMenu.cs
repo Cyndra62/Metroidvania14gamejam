@@ -82,6 +82,6 @@ public class MainMenu : MonoBehaviour
     public void Continue()
     {
         SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
-        //GameManager.instance.LoadData();
+        GameManager.instance.LoadData();
     }
 }

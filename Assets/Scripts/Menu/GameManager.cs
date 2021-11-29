@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.P))
         {
+            SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
             LoadData();
         }
     }
@@ -41,16 +42,17 @@ public class GameManager : MonoBehaviour
         //PlayerPrefs.SetInt("Player_Health", currenthealth);
         //save position char
         PlayerPrefs.SetString("Current_scene", SceneManager.GetActiveScene().name);
-        PlayerPrefs.SetFloat("Player_Position_x", PlayerMovement.instance.transform.position.x);
-        PlayerPrefs.SetFloat("Player_Position_y", PlayerMovement.instance.transform.position.y);
-        PlayerPrefs.SetFloat("Player_Position_z", PlayerMovement.instance.transform.position.z);
+        PlayerPrefs.SetFloat("Player_Position_x", FindObjectOfType<PlayerMovement>().transform.position.x);
+        PlayerPrefs.SetFloat("Player_Position_y", FindObjectOfType<PlayerMovement>().transform.position.y);
+        PlayerPrefs.SetFloat("Player_Position_z", FindObjectOfType<PlayerMovement>().transform.position.z);
     }
 
     public void LoadData()
     {
         //currentHealth = PlayerPrefs.GetInt("Player_Health");
         //load position char
-
-        PlayerMovement.instance.transform.position = new Vector3(PlayerPrefs.GetFloat("Player_Position_x"), PlayerPrefs.GetFloat("Player_Position_y"), PlayerPrefs.GetFloat("Player_Position_z"));
+        //SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
+        FindObjectOfType<PlayerMovement>().transform.position = new Vector3(PlayerPrefs.GetFloat("Player_Position_x"), PlayerPrefs.GetFloat("Player_Position_y"), PlayerPrefs.GetFloat("Player_Position_z"));
+       // PlayerMovement.instance.transform.position = new Vector3(PlayerPrefs.GetFloat("Player_Position_x"), PlayerPrefs.GetFloat("Player_Position_y"), PlayerPrefs.GetFloat("Player_Position_z"));
     }
 }

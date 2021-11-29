@@ -8,7 +8,6 @@ public class GateToUse : MonoBehaviour
     public string gateToLoad;
     public string areaTransitionName;
     public float waitToFade;
-    public Rigidbody2D _rb;
     
 
     private void OnTriggerEnter2D(Collider2D other)

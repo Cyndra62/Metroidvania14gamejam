@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TheHubManager : MonoBehaviour
 {
@@ -9,30 +10,18 @@ public class TheHubManager : MonoBehaviour
     public float inLevelTime;
     private float counterInLevel;
     public Transform playerStartPosition;
-    public GameObject thePlayer;
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            if (instance != this)
-            {
-                Destroy(gameObject);
-            }
-
-        }
-        DontDestroyOnLoad(gameObject);
+        instance = this;
     }
 
     private void Start()
     {
-        thePlayer.transform.position = playerStartPosition.transform.position;
+        
         counterInLevel = inLevelTime;
         fadeScreen.SetActive(true);
+        
     }
 
     private void Update()
@@ -42,10 +31,16 @@ public class TheHubManager : MonoBehaviour
             counterInLevel -= Time.deltaTime;
             if(counterInLevel <= 0)
             {
+               /* if (PlayerPrefs.HasKey("Current_scene"))
+                {
+                    GameManager.instance.LoadData();
+                }
+                else
+                {
+                    FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
+                }*/
                 UiFade.instance.FadeFromBlack();
             }
         }
     }
-
-    
 }

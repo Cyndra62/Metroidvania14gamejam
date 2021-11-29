@@ -59,4 +59,14 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSeconds(waitToChangeScene);
         SceneManager.LoadScene(mainMenu);
     }
+
+    public void SaveGame()
+    {
+        GameManager.instance.SaveData();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
