@@ -6,16 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    
     public float enterSceneTime;
     private float counterEnterScene;
     public float endTime;
     public Image theSprite;
     [SerializeField] GameObject continueButton;
-    [SerializeField] public Transform newGameposition;
-    [SerializeField] public GameObject player;
-
+    //[SerializeField] public GameObject optionMenu;
+    
+    
+    
+    
     private void Start()
     {
+
         if(PlayerPrefs.HasKey("Current_scene"))
         {
             continueButton.SetActive(true);
@@ -27,11 +31,6 @@ public class MainMenu : MonoBehaviour
 
         theSprite.raycastTarget = true;
         counterEnterScene = enterSceneTime;
-
-        /*if (PlayerMovement.instance.transform.position != newGameposition.transform.position)
-        {
-            PlayerMovement.instance.transform.position = newGameposition.transform.position;
-        }*/
     }
 
     private void Update()
@@ -43,8 +42,10 @@ public class MainMenu : MonoBehaviour
             {
                 UiFade.instance.FadeFromBlack();
                 StartCoroutine(RaycastTargetCo());
+                //Time.timeScale = 1f;
             }
         }
+       PauseMenu.instance.isPause = false;
     }
 
     public void QuitGame()
@@ -69,6 +70,7 @@ public class MainMenu : MonoBehaviour
     {
         UiFade.instance.FadeToBlack();
         PlayerPrefs.DeleteAll();
+        IsSavedScene.instance.isContinue = false;
         StartCoroutine(NewGameCo());
 
     }
@@ -76,12 +78,21 @@ public class MainMenu : MonoBehaviour
     private IEnumerator NewGameCo()
     {
         yield return new WaitForSeconds(endTime);
+        //mainMenu.SetActive(false);
         SceneManager.LoadScene("TheHub");
+       
     }
 
     public void Continue()
     {
         SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
-        GameManager.instance.LoadData();
+        //IsSavedScene.instance.isContinue = true;
+        //GameManager.instance.LoadData();
+        IsSavedScene.instance.isContinue = true;
     }
+
+   /* public void OptionMenu()
+    {
+        optionMenu.SetActive(true);
+    }*/
 }

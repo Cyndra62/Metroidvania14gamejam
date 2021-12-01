@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,13 +35,15 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
-            LoadData();
+            TheHubManager.instance.isContinue = true;
+            //LoadData();
         }
     }
     public void SaveData()
     {
         //PlayerPrefs.SetInt("Player_Health", currenthealth);
         //save position char
+        //PlayerPrefs.SetFloat("Current_Audio_Master", OptionsSetings.instance.audioMixer.name.SetMasterVolume());
         PlayerPrefs.SetString("Current_scene", SceneManager.GetActiveScene().name);
         PlayerPrefs.SetFloat("Player_Position_x", FindObjectOfType<PlayerMovement>().transform.position.x);
         PlayerPrefs.SetFloat("Player_Position_y", FindObjectOfType<PlayerMovement>().transform.position.y);

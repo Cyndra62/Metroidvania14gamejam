@@ -139,7 +139,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2008055601
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5115618752126089108, guid: 9e85ca271b935bc4f95c2c3cec011fa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -221,6 +221,7 @@ MonoBehaviour:
   _facingRight: 1
   _wallJump: 0
   _leftOrRight: 0
+  stopInput: 0
   anim: {fileID: 5659680942542709836}
   areaTransitionName: 
 --- !u!114 &8233678256866150516
@@ -454,6 +455,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4790181645483262012, guid: 43311794769678c4db28e5a99133f527, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4790181645483262012, guid: 43311794769678c4db28e5a99133f527, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 97486785
+      objectReference: {fileID: 0}
     - target: {fileID: 4924705729794853110, guid: 43311794769678c4db28e5a99133f527, type: 3}
       propertyPath: m_Name
       value: AmmoBelt
@@ -466,6 +475,14 @@ PrefabInstance:
       propertyPath: _playerShooting
       value: 
       objectReference: {fileID: 7506924741823340932}
+    - target: {fileID: 6742713045198515754, guid: 43311794769678c4db28e5a99133f527, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742713045198515754, guid: 43311794769678c4db28e5a99133f527, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 97486785
+      objectReference: {fileID: 0}
     - target: {fileID: 7243892152248410750, guid: 43311794769678c4db28e5a99133f527, type: 3}
       propertyPath: _player
       value: 
@@ -474,6 +491,14 @@ PrefabInstance:
       propertyPath: _playerShooting
       value: 
       objectReference: {fileID: 7506924741823340932}
+    - target: {fileID: 8219962133908709780, guid: 43311794769678c4db28e5a99133f527, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219962133908709780, guid: 43311794769678c4db28e5a99133f527, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 97486785
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43311794769678c4db28e5a99133f527, type: 3}
 --- !u!1 &4727474548687761508 stripped

@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class TheHubManager : MonoBehaviour
 {
     public static TheHubManager instance;
-    public GameObject fadeScreen;
+    public GameObject fadeScreen, mainMenu, optionsMenu, pauseMenu;
     public float inLevelTime;
     private float counterInLevel;
     public Transform playerStartPosition;
+    public bool isContinue;
 
     private void Awake()
     {
@@ -18,10 +19,20 @@ public class TheHubManager : MonoBehaviour
 
     private void Start()
     {
+        mainMenu.SetActive(false);
         
+
+        if(IsSavedScene.instance.isContinue == true)
+        {
+            GameManager.instance.LoadData();
+        }
+        else
+        {
+            FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
+        }
         counterInLevel = inLevelTime;
         fadeScreen.SetActive(true);
-        
+        //IsContinue();
     }
 
     private void Update()
@@ -31,16 +42,31 @@ public class TheHubManager : MonoBehaviour
             counterInLevel -= Time.deltaTime;
             if(counterInLevel <= 0)
             {
-               /* if (PlayerPrefs.HasKey("Current_scene"))
+                //IsContinue();
+                if (IsSavedScene.instance.isContinue == true)
                 {
                     GameManager.instance.LoadData();
+                    IsSavedScene.instance.isContinue = false;
                 }
-                else
+                else if(!IsSavedScene.instance.isContinue == true)
                 {
                     FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
-                }*/
+                }
                 UiFade.instance.FadeFromBlack();
             }
+        }
+    }
+
+    public void IsContinue()
+    {
+        if (isContinue)
+        {
+            GameManager.instance.LoadData();
+
+        }
+        else
+        {
+           // FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
         }
     }
 }

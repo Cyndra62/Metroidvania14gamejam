@@ -18,10 +18,19 @@ public class UnderneathTheBedManager : MonoBehaviour
 
     private void Start()
     {
-
+        if (IsSavedScene.instance.isContinue == true)
+        {
+            GameManager.instance.LoadData();
+        }
+        /*else
+        {
+            FindObjectOfType<PlayerMovement>().transform.position = playerSpawnPoint.transform.position;
+        }*/
+        //PauseMenu.instance.isPause = true;
         counterInLevel = inLevelTime;
         fadeScreen.SetActive(true);
-        
+       
+
     }
 
     private void Update()
@@ -31,14 +40,13 @@ public class UnderneathTheBedManager : MonoBehaviour
             counterInLevel -= Time.deltaTime;
             if (counterInLevel <= 0)
             {
-                /*if ( PlayerPrefs.HasKey("Current_scene"))
+                if (IsSavedScene.instance.isContinue == true)
                 {
                     GameManager.instance.LoadData();
+                    IsSavedScene.instance.isContinue = false;
                 }
-                else
-                {
-                    FindObjectOfType<PlayerMovement>().transform.position = playerSpawnPoint.transform.position;
-                }*/
+                //FindObjectOfType<PlayerMovement>().transform.position = playerSpawnPoint.transform.position;
+
                 UiFade.instance.FadeFromBlack();
             }
         }

@@ -51,6 +51,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         UiFade.instance.FadeToBlack();
+        PlayerMovement.instance.areaTransitionName = "";
         StartCoroutine(MainMenuCo());
     }
 
