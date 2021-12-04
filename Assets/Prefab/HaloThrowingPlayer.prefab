@@ -139,7 +139,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2008055601
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5115618752126089108, guid: 9e85ca271b935bc4f95c2c3cec011fa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _slideSpeed: 2
-  _jumpVelocity: 4
+  _jumpVelocity: 6.5
   _wallJumpVelocityX: 4
   _wallJumpVelocityY: 4
   _isDoubleJump: 1
@@ -221,6 +221,7 @@ MonoBehaviour:
   _facingRight: 1
   _wallJump: 0
   _leftOrRight: 0
+  stopInput: 0
   anim: {fileID: 5659680942542709836}
   areaTransitionName: 
 --- !u!114 &8233678256866150516
