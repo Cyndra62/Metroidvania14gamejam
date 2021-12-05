@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
     private PlayerCollision _playerCollision;
+    private PlayerControls controls;
 
     private Rigidbody2D _rb;
 
@@ -39,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Gate System")]
     public string areaTransitionName;
 
+    private Vector2 dir = Vector2.zero;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+        controls = new PlayerControls();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -60,23 +64,40 @@ public class PlayerMovement : MonoBehaviour
     {
         stopInput = false;
         _rb = GetComponent<Rigidbody2D>();
+
         _playerCollision =GetComponent<PlayerCollision>();
+        controls.PControls.Dash.performed += ctx => { if (_nextDash <= Time.time && canDash && PlayerPrefs.GetInt("DashEnabled", 0) == 1) StartCoroutine(Dash()); };
+        controls.PControls.Jump.performed += ctx =>
+        {
+            if (_playerCollision._onGround)
+            {
+                Jump(Vector2.up, false);
+            }
+            else if (!_playerCollision._onGround && _isDoubleJump == true && _pushingWall == false)
+            {
+                Jump(Vector2.up, true);
+            }
+
+            if (_pushingWall == true && !_playerCollision._onGround)
+            {
+                _wallJump = true;
+                Invoke("CancelWallJump", 0.2f);
+            }
+        };
+        controls.PControls.Movement.performed += ctx => dir = ctx.ReadValue<Vector2>();
+        controls.PControls.Movement.canceled += ctx => dir = Vector2.zero;
     }
 
     private void Update()
     {
         if (!stopInput)
         {
-            float x = Input.GetAxis("Horizontal");
-            float y = Input.GetAxis("Vertical");
-            Vector2 dir = new Vector2(x, y);
+            //float x = Input.GetAxis("Horizontal");
+            //float y = Input.GetAxis("Vertical");
+            //Vector2 dir = new Vector2(x, y);
             Walk(dir);
 
             // Dash
-            if (Input.GetAxis("Dash") > 0.5f && _nextDash <= Time.time && canDash)
-            {
-                StartCoroutine(Dash());
-            }
             if (_playerCollision._onGround)
             {
                 canDash = true;
@@ -103,36 +124,30 @@ public class PlayerMovement : MonoBehaviour
                 _pushingWall = false;
             }
 
-            if (_pushingWall == true && !_playerCollision._onGround && Input.GetButtonDown("Jump"))
-            {
-                _wallJump = true;
-                Invoke("CancelWallJump", 0.2f);
-            }
-
             if (_wallJump)
             {
                 WallJump();
             }
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                if (_playerCollision._onGround)
-                {
-                    Jump(Vector2.up, false);
-                }
-                else if (!_playerCollision._onGround && _isDoubleJump == true && _pushingWall == false)
-                {
-                    Jump(Vector2.up, true);
-                }
-            }
+            //if (Input.GetButtonDown("Jump"))
+            //{
+            //    if (_playerCollision._onGround)
+            //    {
+            //        Jump(Vector2.up, false);
+            //    }
+            //    else if (!_playerCollision._onGround && _isDoubleJump == true && _pushingWall == false)
+            //    {
+            //        Jump(Vector2.up, true);
+            //    }
+            //}
 
 
-            if (_facingRight == false && x > 0)
+            if (_facingRight == false && dir.x > 0)
             {
                 FlipCharacter();
                 _leftOrRight = -1;
             }
-            else if (_facingRight == true && x < 0)
+            else if (_facingRight == true && dir.x < 0)
             {
                 FlipCharacter();
                 _leftOrRight = 1;
@@ -163,11 +178,6 @@ public class PlayerMovement : MonoBehaviour
             _rb.gravityScale = gravity;
             _rb.drag = drag;
         }
-    }
-
-    private static Vector2 GetInput()
-    {
-        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     private void WallSlide()
@@ -213,4 +223,18 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = Scaler;
     }
     
+    public void EnableDash(int i)
+    {
+        PlayerPrefs.SetInt("DashEnabled", 1);
+    }
+
+    private void OnEnable()
+    {
+        controls.PControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.PControls.Disable();
+    }
 }

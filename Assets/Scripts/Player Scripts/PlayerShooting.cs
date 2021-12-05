@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -28,6 +29,33 @@ public class PlayerShooting : MonoBehaviour
     public PlayerMovement _playerMovement;
     private HaloProjectile _haloProjectile;
 
+    private PlayerControls controls;
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+        controls.PControls.Attack.performed += ctx => Shoot();
+        //InputSystem.onDeviceChange += (device, change) =>
+        //{
+        //    switch (change)
+        //    {
+        //        case InputDeviceChange.Reconnected:
+        //        case InputDeviceChange.Added:
+        //            if (device.GetType() == typeof(Gamepad))
+        //            {
+        //                GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad", device);
+        //            }
+        //            break;
+        //        case InputDeviceChange.Removed:
+        //        case InputDeviceChange.Disconnected:
+        //            if (device.GetType() == typeof(Gamepad))
+        //            {
+        //                GetComponent<PlayerInput>().SwitchCurrentControlScheme("KBM", InputSystem.GetDevice("Keyboard"), InputSystem.GetDevice("Mouse"));
+        //            }
+        //            break;
+        //    }
+        //};
+    }
 
     private void Start() 
     {
@@ -43,7 +71,14 @@ public class PlayerShooting : MonoBehaviour
     }
     private void FixedUpdate() 
     {
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 diff;
+        if (GetComponent<PlayerInput>().currentControlScheme.Equals("Gamepad")){
+            diff = controls.PControls.FireDirection.ReadValue<Vector2>();
+            Debug.Log(diff);
+        } else
+        {
+            diff = Camera.main.ScreenToWorldPoint(controls.PControls.FirePosition.ReadValue<Vector2>()) - transform.position;
+        }
 
         diff.Normalize();
 
@@ -60,13 +95,6 @@ public class PlayerShooting : MonoBehaviour
             _playerArm.transform.localRotation = Quaternion.Euler(180, 180, -_rotZ);
         }
 
-    }
-    private void Update() 
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
     }
     void Shoot()
     {
@@ -139,5 +167,14 @@ public class PlayerShooting : MonoBehaviour
     public void Pickup(GameObject halo)
     {
         Physics2D.IgnoreCollision(halo.GetComponent<Collider2D>(), _playerCollider, false);
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 }
