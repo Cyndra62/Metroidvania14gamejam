@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 5
   _slideSpeed: 2
-  _jumpVelocity: 4
+  _jumpVelocity: 6.5
   _wallJumpVelocityX: 4
   _wallJumpVelocityY: 4
   _isDoubleJump: 1
