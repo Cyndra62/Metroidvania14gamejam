@@ -9400,7 +9400,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5168276505651542190, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5168276505651542190, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_SortingLayerID
@@ -9408,7 +9408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6364044772264908472, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6364044772264908472, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_SortingLayerID
@@ -9462,13 +9462,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8233678256866150519, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _dashCooldown
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233678256866150519, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _dashDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233678256866150519, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _dashDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233678256866150519, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: _dashLinearDrag
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8233678256866150538, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_Name
       value: HaloThrowingPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 8633506900634327302, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8633506900634327302, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_SortingLayerID

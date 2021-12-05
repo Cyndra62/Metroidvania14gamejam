@@ -15,7 +15,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _wallJumpVelocityX;
     [SerializeField] private float _wallJumpVelocityY;
-    
+
+    [Header ("Dash Variables")]
+    [SerializeField] private float _dashDistance = 20f;
+    [SerializeField] private float _dashLinearDrag = 7.5f;
+    [SerializeField] private float _dashDuration = 0.3f;
+    [SerializeField] private float _dashCooldown = .75f;
+    private float _nextDash = 0;
+    private bool canDash = true;
+    private bool isDashing = false;
 
     [Header ("Booleans")]
     [SerializeField] public bool _isDoubleJump = true;
@@ -63,6 +71,17 @@ public class PlayerMovement : MonoBehaviour
             float y = Input.GetAxis("Vertical");
             Vector2 dir = new Vector2(x, y);
             Walk(dir);
+
+            // Dash
+            if (Input.GetAxis("Dash") > 0.5f && _nextDash <= Time.time && canDash)
+            {
+                StartCoroutine(Dash());
+            }
+            if (_playerCollision._onGround)
+            {
+                canDash = true;
+            }
+            // End Dash
 
             if (_playerCollision._onWall && !_playerCollision._onGround && _pushingWall == true)
             {
@@ -123,6 +142,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator Dash()
+    {
+        if (!isDashing) {
+            canDash = false;
+            _nextDash = Time.time + _dashCooldown;
+            isDashing = true;
+
+            float gravity = _rb.gravityScale;
+            float drag = _rb.drag;
+            _rb.gravityScale = 0;
+            _rb.drag = _dashLinearDrag;
+
+            _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+            _rb.AddForce(new Vector2(_dashDistance * (_facingRight ? 1 : -1), 0), ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(_dashDuration);
+
+            isDashing = false;
+            _rb.gravityScale = gravity;
+            _rb.drag = drag;
+        }
+    }
+
     private static Vector2 GetInput()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -137,18 +179,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Walk(Vector2 dir)
     {
-       _rb.velocity = new Vector2(dir.x * _speed, _rb.velocity.y);
+        if (!isDashing)
+            _rb.velocity = new Vector2(dir.x * _speed, _rb.velocity.y);
     }
     
     private void Jump(Vector2 dir, bool isDoubleJump)
     {
-        if(isDoubleJump == true)
-        {
-            _isDoubleJump= false;
-        }
+        if (!isDashing) { 
+            if(isDoubleJump == true)
+            {
+                _isDoubleJump= false;
+            }
 
-            _rb.velocity = new Vector2(_rb.velocity.x, 0);
-            _rb.velocity += dir * _jumpVelocity;
+                _rb.velocity = new Vector2(_rb.velocity.x, 0);
+                _rb.velocity += dir * _jumpVelocity;
+        }
         
     }
 
