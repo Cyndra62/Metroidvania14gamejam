@@ -10,7 +10,7 @@ public class TheHubManager : MonoBehaviour
     public float inLevelTime;
     private float counterInLevel;
     public Transform playerStartPosition;
-    public bool isContinue;
+    public bool isSaved;
 
     private void Awake()
     {
@@ -20,16 +20,10 @@ public class TheHubManager : MonoBehaviour
     private void Start()
     {
         mainMenu.SetActive(false);
-        
+        FindObjectOfType<PlayerShooting>().shooting = false;
+        FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
 
-        if(IsSavedScene.instance.isContinue == true)
-        {
-            GameManager.instance.LoadData();
-        }
-        else
-        {
-            FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
-        }
+
         counterInLevel = inLevelTime;
         fadeScreen.SetActive(true);
         //IsContinue();
@@ -37,21 +31,32 @@ public class TheHubManager : MonoBehaviour
 
     private void Update()
     {
-        if(counterInLevel > 0)
+        
+
+        if (counterInLevel > 0)
         {
+           
             counterInLevel -= Time.deltaTime;
             if(counterInLevel <= 0)
             {
                 //IsContinue();
-                if (IsSavedScene.instance.isContinue == true)
+                /*if (IsSavedScene.instance.isContinue == true)
                 {
                     GameManager.instance.LoadData();
                     IsSavedScene.instance.isContinue = false;
-                }
-                else if(!IsSavedScene.instance.isContinue == true)
+                }*/
+                if (IsSavedScene.instance.isContinue == false && isSaved == false)
                 {
-                    FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
+                    //FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
+                    
                 }
+                else if (IsSavedScene.instance.isContinue == true)
+                {
+                    GameManager.instance.LoadData();
+                    IsSavedScene.instance.isContinue = false;
+                    
+                }
+
                 UiFade.instance.FadeFromBlack();
             }
         }
@@ -59,7 +64,7 @@ public class TheHubManager : MonoBehaviour
 
     public void IsContinue()
     {
-        if (isContinue)
+        if (isSaved)
         {
             GameManager.instance.LoadData();
 

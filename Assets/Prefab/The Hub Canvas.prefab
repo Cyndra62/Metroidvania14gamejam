@@ -531,9 +531,7 @@ GameObject:
   - component: {fileID: 1607493029249895043}
   - component: {fileID: 1607493029249895053}
   - component: {fileID: 1607493029249895042}
-  - component: {fileID: 5313184893444571419}
   - component: {fileID: 8324081374359661874}
-  - component: {fileID: 858622768295864641}
   m_Layer: 5
   m_Name: The Hub Canvas
   m_TagString: Untagged
@@ -669,22 +667,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 3fc487a44708bb348a7b394654bd3a85, type: 2}
---- !u!114 &5313184893444571419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607493029249895044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ec7b07bf5357f64aa994b5c799b91f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enterSceneTime: 2.5
-  endTime: 3
-  theSprite: {fileID: 1607493028928577286}
-  continueButton: {fileID: 8965484795010433852}
 --- !u!114 &8324081374359661874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,18 +683,6 @@ MonoBehaviour:
   mainMenu: MainMenu
   waitToChangeScene: 0.01
   isPause: 0
---- !u!114 &858622768295864641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1607493029249895044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81b57590bc9a0fd459aa982db29c5baf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2087081991238268543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,7 +2690,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5313184893444571419}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 1
@@ -4922,7 +4892,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5313184893444571419}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Continue
         m_Mode: 1

@@ -186,6 +186,7 @@ MonoBehaviour:
   fadeScreen: {fileID: 5792291765032390263}
   inLevelTime: 1
   playerSpawnPoint: {fileID: 1303519561}
+  isSaved: 0
 --- !u!1 &130235474
 GameObject:
   m_ObjectHideFlags: 0
@@ -38756,6 +38757,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1607493028928577284, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1607493029249895040, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -38839,6 +38844,14 @@ PrefabInstance:
     - target: {fileID: 1607493029249895040, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607493029249895043, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
+      propertyPath: fadeSpeedToBlack
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607493029249895043, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
+      propertyPath: fadeSpeedFromBlack
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1607493029249895044, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
       propertyPath: m_Name

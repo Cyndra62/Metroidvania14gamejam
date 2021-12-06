@@ -22,6 +22,7 @@ public class PlayerShooting : MonoBehaviour
     [Header ("Ammo Info")]
     [SerializeField] public int _ammoCount;
     [SerializeField] private bool _canShoot;
+    [SerializeField] public bool shooting;
     [SerializeField] public List<GameObject> _ammoLineup = new List<GameObject>();
 
     private Collider2D _playerCollider;
@@ -31,6 +32,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start() 
     {
+        shooting = false;
         _playerArm = _player.transform.GetChild(0).gameObject;
         _playerMovement = GetComponent<PlayerMovement>();
         _playerCollider = _player.GetComponent<Collider2D>();
@@ -63,7 +65,7 @@ public class PlayerShooting : MonoBehaviour
     }
     private void Update() 
     {
-        if (!PauseMenu.instance.isPause && Input.GetMouseButtonDown(0))
+        if (!shooting && !PauseMenu.instance.isPause && Input.GetMouseButtonDown(0))
         {
             Shoot();
         }

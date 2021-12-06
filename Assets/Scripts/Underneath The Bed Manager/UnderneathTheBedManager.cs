@@ -10,6 +10,7 @@ public class UnderneathTheBedManager : MonoBehaviour
     public float inLevelTime;
     private float counterInLevel;
     public Transform playerSpawnPoint;
+    public bool isSaved;
 
     private void Awake()
     {
@@ -40,10 +41,11 @@ public class UnderneathTheBedManager : MonoBehaviour
             counterInLevel -= Time.deltaTime;
             if (counterInLevel <= 0)
             {
-                if (IsSavedScene.instance.isContinue == true)
+                if (IsSavedScene.instance.isContinue == true && isSaved == true)
                 {
                     GameManager.instance.LoadData();
                     IsSavedScene.instance.isContinue = false;
+                    isSaved = false;
                 }
                 //FindObjectOfType<PlayerMovement>().transform.position = playerSpawnPoint.transform.position;
 

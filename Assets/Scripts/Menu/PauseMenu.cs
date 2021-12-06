@@ -35,12 +35,14 @@ public class PauseMenu : MonoBehaviour
     {
         if (isPause)
         {
+            //PlayerMovement.instance.stopInput = true;
             isPause = false;
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
         else
         {
+            //PlayerMovement.instance.stopInput = false;
             isPause = true;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
@@ -51,7 +53,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         UiFade.instance.FadeToBlack();
-        PlayerMovement.instance.areaTransitionName = "";
+        //PlayerMovement.instance.areaTransitionName = "";
         StartCoroutine(MainMenuCo());
     }
 
@@ -64,6 +66,7 @@ public class PauseMenu : MonoBehaviour
     public void SaveGame()
     {
         GameManager.instance.SaveData();
+        IsSavedScene.instance.isContinue = true;
     }
 
     public void QuitGame()

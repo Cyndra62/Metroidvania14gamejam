@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
                 if (_playerCollision._onGround)
                 {
                     Jump(Vector2.up, false);
+                   
                 }
                 else if (!_playerCollision._onGround && _isDoubleJump == true && _pushingWall == false)
                 {
@@ -118,6 +119,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 FlipCharacter();
                 _leftOrRight = 1;
+            }
+
+            anim.SetBool("isJumping", !_playerCollision._onGround);
+
+            if(_rb.velocity.y < transform.position.y)
+            {
+                anim.SetBool("isFaling", true);
+            }
+            else
+            {
+                anim.SetBool("isFaling", false);
             }
 
             anim.SetFloat("move", Mathf.Abs(_rb.velocity.x));

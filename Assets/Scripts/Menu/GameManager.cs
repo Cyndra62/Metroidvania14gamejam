@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
-            TheHubManager.instance.isContinue = true;
+            //TheHubManager.instance.isSaved = true;
             //LoadData();
         }
     }

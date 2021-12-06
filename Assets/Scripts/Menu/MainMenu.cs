@@ -12,15 +12,16 @@ public class MainMenu : MonoBehaviour
     public float endTime;
     public Image theSprite;
     [SerializeField] GameObject continueButton;
-    //[SerializeField] public GameObject optionMenu;
+    [SerializeField] public GameObject mainMenu;
     
     
     
     
     private void Start()
     {
-
-        if(PlayerPrefs.HasKey("Current_scene"))
+        mainMenu.SetActive(true);
+        FindObjectOfType<PlayerShooting>().shooting = true;
+        if (PlayerPrefs.HasKey("Current_scene"))
         {
             continueButton.SetActive(true);
         }
@@ -70,7 +71,9 @@ public class MainMenu : MonoBehaviour
     {
         UiFade.instance.FadeToBlack();
         PlayerPrefs.DeleteAll();
+        PlayerMovement.instance.areaTransitionName = "";
         IsSavedScene.instance.isContinue = false;
+        IsSavedScene.instance.switchIsOn = false;
         StartCoroutine(NewGameCo());
 
     }
@@ -78,7 +81,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator NewGameCo()
     {
         yield return new WaitForSeconds(endTime);
-        //mainMenu.SetActive(false);
+        mainMenu.SetActive(false);
         SceneManager.LoadScene("TheHub");
        
     }
@@ -89,6 +92,7 @@ public class MainMenu : MonoBehaviour
         //IsSavedScene.instance.isContinue = true;
         //GameManager.instance.LoadData();
         IsSavedScene.instance.isContinue = true;
+        
     }
 
    /* public void OptionMenu()
