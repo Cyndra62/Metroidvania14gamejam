@@ -21,7 +21,7 @@ public class PlayerShooting : MonoBehaviour
 
     [Header ("Ammo Info")]
     [SerializeField] public int _ammoCount;
-    [SerializeField] private bool _canShoot;
+    [SerializeField] public bool _canShoot;
     [SerializeField] public bool shooting;
     [SerializeField] public List<GameObject> _ammoLineup = new List<GameObject>();
 
@@ -68,10 +68,12 @@ public class PlayerShooting : MonoBehaviour
         if (!shooting && !PauseMenu.instance.isPause && Input.GetMouseButtonDown(0))
         {
             Shoot();
+            //FindObjectOfType<HaloProjectile>().counterBulletReset = FindObjectOfType<HaloProjectile>().bulletTimeReset;
         }
     }
     void Shoot()
     {
+        
         string haloName;
         if(_ammoCount >=0)
         {

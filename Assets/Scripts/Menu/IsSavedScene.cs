@@ -6,7 +6,7 @@ public class IsSavedScene : MonoBehaviour
 {
     public static IsSavedScene instance;
     public bool isContinue;
-    public bool switchIsOn;
+    public bool switchIsOn, canShoot;
 
     private void Awake()
     {
@@ -29,6 +29,7 @@ public class IsSavedScene : MonoBehaviour
     {
         isContinue = false;
         switchIsOn = false;
+        canShoot = true;
     }
 
 

@@ -20,7 +20,8 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         mainMenu.SetActive(true);
-        FindObjectOfType<PlayerShooting>().shooting = true;
+        //FindObjectOfType<PlayerShooting>().shooting = true;
+        //FindObjectOfType<PlayerShooting>()._canShoot = false;
         if (PlayerPrefs.HasKey("Current_scene"))
         {
             continueButton.SetActive(true);
@@ -46,7 +47,14 @@ public class MainMenu : MonoBehaviour
                 //Time.timeScale = 1f;
             }
         }
-       PauseMenu.instance.isPause = false;
+
+        if(IsSavedScene.instance.canShoot)
+        {
+            FindObjectOfType<PlayerShooting>().shooting = true;
+            FindObjectOfType<PlayerShooting>()._canShoot = false;
+        }
+
+       //PauseMenu.instance.isPause = false;
     }
 
     public void QuitGame()
@@ -71,9 +79,10 @@ public class MainMenu : MonoBehaviour
     {
         UiFade.instance.FadeToBlack();
         PlayerPrefs.DeleteAll();
-        PlayerMovement.instance.areaTransitionName = "";
-        IsSavedScene.instance.isContinue = false;
+        PlayerMovement.instance.areaTransitionName = "Start";
+        IsSavedScene.instance.isContinue = true;
         IsSavedScene.instance.switchIsOn = false;
+        IsSavedScene.instance.canShoot = true;
         StartCoroutine(NewGameCo());
 
     }
@@ -91,7 +100,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
         //IsSavedScene.instance.isContinue = true;
         //GameManager.instance.LoadData();
-        IsSavedScene.instance.isContinue = true;
+        IsSavedScene.instance.isContinue = false;
         
     }
 

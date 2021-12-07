@@ -5,36 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class IntroScreen : MonoBehaviour
 {
-    public float introScreenTime, exitScreenTime, intrOlteanuScreenTime, exitOlteanuScreenTime;
-    private float counterIntroScreen, counterExitScreen, counterIntrOlteanuScreen, counterExitOlteanuScreen;
+    public float introScreenTime, exitScreenTime, intrOlteanuScreenTime, exitOlteanuScreenTime , skypButtonTime;
+    private float counterIntroScreen, counterExitScreen, counterIntrOlteanuScreen, counterExitOlteanuScreen, counterSkypButton;
     public float waitForNextScene, waitToLoadOlteanu;
-    public GameObject godzilla, olteanu;
+    public GameObject godzilla, olteanu ,skyp;
 
     void Start()
     {
         godzilla.SetActive(true);
         counterIntroScreen = introScreenTime;
+        //PauseMenu.instance.isPause = false;
+        
     }
     
     void Update()
-    {
-        if(counterIntroScreen > 0)
+    {        
+        if (counterIntroScreen > 0)
         {
             counterIntroScreen -= Time.deltaTime;
             if(counterIntroScreen <= 0)
             {
-                UiFade.instance.FadeFromBlack();
+                IntroUIFade.instance.FadeFromBlack();
                 counterExitScreen = exitScreenTime;
                // StartCoroutine(IntroOlteanuCo());
             }
         }
+        
 
-        if(counterExitScreen > 0)
+        if (counterExitScreen > 0)
         {
             counterExitScreen -= Time.deltaTime;
             if(counterExitScreen <= 0)
             {
-                UiFade.instance.FadeToBlack();
+                IntroUIFade.instance.FadeToBlack();
                 StartCoroutine(IntroOlteanuCo());
                 counterIntrOlteanuScreen = intrOlteanuScreenTime;
             }
@@ -45,7 +48,7 @@ public class IntroScreen : MonoBehaviour
             counterIntrOlteanuScreen -= Time.deltaTime;
             if (counterIntrOlteanuScreen <= 0)
             {
-                UiFade.instance.FadeFromBlack();
+                IntroUIFade.instance.FadeFromBlack();
                 counterExitOlteanuScreen = exitOlteanuScreenTime;
             }
         }
@@ -55,9 +58,16 @@ public class IntroScreen : MonoBehaviour
             counterExitOlteanuScreen -= Time.deltaTime;
             if (counterExitOlteanuScreen <= 0)
             {
-                UiFade.instance.FadeToBlack();
+                IntroUIFade.instance.FadeToBlack();
                 StartCoroutine(ChangeSceneCo());
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            IntroUIFade.instance.FadeToBlack();
+            StartCoroutine(SkypCo());
+
         }
     }
 
@@ -73,5 +83,17 @@ public class IntroScreen : MonoBehaviour
         godzilla.SetActive(false);
         olteanu.SetActive(true);
         //counterIntrOlteanuScreen = intrOlteanuScreenTime;
+    }
+
+    public void SkypScene()
+    {
+        IntroUIFade.instance.FadeToBlack();
+        StartCoroutine(SkypCo());        
+    }
+
+    private IEnumerator SkypCo()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("MainMenu");
     }
 }

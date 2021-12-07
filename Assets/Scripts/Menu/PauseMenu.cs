@@ -25,6 +25,17 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
+        if (IsSavedScene.instance.canShoot)
+        {
+            FindObjectOfType<PlayerShooting>().shooting = true;
+            FindObjectOfType<PlayerShooting>()._canShoot = false;
+        }
+        else
+        {
+            FindObjectOfType<PlayerShooting>().shooting = false;
+            FindObjectOfType<PlayerShooting>()._canShoot = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
            PauseUnpause();
@@ -39,6 +50,7 @@ public class PauseMenu : MonoBehaviour
             isPause = false;
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
+            IsSavedScene.instance.canShoot = false;
         }
         else
         {
@@ -46,6 +58,8 @@ public class PauseMenu : MonoBehaviour
             isPause = true;
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
+            IsSavedScene.instance.canShoot = true;
+
         }
     }
 

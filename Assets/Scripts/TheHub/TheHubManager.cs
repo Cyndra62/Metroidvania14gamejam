@@ -19,11 +19,13 @@ public class TheHubManager : MonoBehaviour
 
     private void Start()
     {
+        IsSavedScene.instance.canShoot = false;
         mainMenu.SetActive(false);
-        FindObjectOfType<PlayerShooting>().shooting = false;
+        //FindObjectOfType<PlayerShooting>().shooting = false;
+        //FindObjectOfType<PlayerShooting>()._canShoot = true;
         FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
 
-
+        isSaved = false;
         counterInLevel = inLevelTime;
         fadeScreen.SetActive(true);
         //IsContinue();
@@ -36,6 +38,7 @@ public class TheHubManager : MonoBehaviour
         if (counterInLevel > 0)
         {
            
+
             counterInLevel -= Time.deltaTime;
             if(counterInLevel <= 0)
             {
@@ -45,18 +48,21 @@ public class TheHubManager : MonoBehaviour
                     GameManager.instance.LoadData();
                     IsSavedScene.instance.isContinue = false;
                 }*/
-                if (IsSavedScene.instance.isContinue == false && isSaved == false)
+                if (IsSavedScene.instance.canShoot)
                 {
-                    //FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
-                    
-                }
-                else if (IsSavedScene.instance.isContinue == true)
-                {
-                    GameManager.instance.LoadData();
-                    IsSavedScene.instance.isContinue = false;
-                    
+                    FindObjectOfType<PlayerShooting>().shooting = false;
+                    FindObjectOfType<PlayerShooting>()._canShoot = true;
                 }
 
+                if (IsSavedScene.instance.isContinue == true)
+                {
+                    FindObjectOfType<PlayerShooting>().shooting = false;
+                    FindObjectOfType<PlayerShooting>()._canShoot = true;
+                    GameManager.instance.LoadData();
+                    IsSavedScene.instance.isContinue = false;
+                    //IsSavedScene.instance.isSaved = true;
+
+                }
                 UiFade.instance.FadeFromBlack();
             }
         }
