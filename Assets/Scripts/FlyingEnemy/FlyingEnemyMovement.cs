@@ -17,8 +17,9 @@ namespace FlyingEnemy
 
         public float lineOfSight;
         public float flyingSpeed;
+        public float knockback;
 
-        public int health;
+        [SerializeField]public int health;
 
         private void Start()
         {
@@ -36,7 +37,8 @@ namespace FlyingEnemy
                 Destroy(gameObject);
             }
             _directionToPlayer = playerRigidbody.position - _rigidbody.position;
-            if (Mathf.Abs(_directionToPlayer.x) < lineOfSight || Mathf.Abs(_directionToPlayer.y) < lineOfSight)
+            Debug.Log(_directionToPlayer);
+            if (Mathf.Abs(_directionToPlayer.x) < lineOfSight)
             {
                 _isFollowingPlayer = true;
             }

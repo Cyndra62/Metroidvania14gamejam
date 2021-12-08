@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SimpleEnemyAI : MonoBehaviour {
   public float walkSpeed;
+  public float health;
 
   [HideInInspector]
   public bool mustPatrol;
@@ -17,6 +18,10 @@ public class SimpleEnemyAI : MonoBehaviour {
   }
 
   void Update() {
+    if (health == 0)
+    {
+      Destroy(gameObject);
+    }
     if (mustPatrol) {
       Patrol();
     }
@@ -40,6 +45,14 @@ public class SimpleEnemyAI : MonoBehaviour {
     transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     walkSpeed *= -1;
     mustPatrol = true;
+  }
+
+  void OnCollisionEnter2D(Collision2D other)
+  {
+    if (other.gameObject.CompareTag("Bullet"))
+    {
+      health -= 1;
+    }
   }
 
 }

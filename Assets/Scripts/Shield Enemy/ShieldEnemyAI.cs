@@ -12,6 +12,7 @@ public class ShieldEnemyAI : MonoBehaviour
     [SerializeField] private float visionArea;
     [SerializeField] private float shieldCooldown;
     [SerializeField] private float activeShieldDuration;
+    [SerializeField] private float health;
 
     private byte _currentState; //0 - inactive, 1 - active, no shield, 2 - active, shield up
 
@@ -37,6 +38,11 @@ public class ShieldEnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (health == 0)
+        {
+            Destroy(gameObject);
+        }
+        
         //Every frame, update the distance to the player
         _distanceToPlayer = playerRigidbody.position - _rigidbody.position;
 
@@ -110,5 +116,13 @@ public class ShieldEnemyAI : MonoBehaviour
     private void Flip()
     {
         transform.localScale *= new Vector2(-1, 1);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            health -= 1;
+        }
     }
 }

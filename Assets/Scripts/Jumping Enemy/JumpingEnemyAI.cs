@@ -12,6 +12,7 @@ namespace Jumping_Enemy
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float jumpForce, walkSpeed, maxDistance, lineOfSight;
         [SerializeField] private Rigidbody2D playerRigidbody;
+        [SerializeField] private float health;
 
         private bool _isOnGround;
         private bool _hittingWall;
@@ -41,6 +42,10 @@ namespace Jumping_Enemy
 
         private void Update()
         {
+            if (health == 0)
+            {
+                Destroy(gameObject);
+            }
             _currentPosition = _rigidbody.position;
             _distanceFromOrigin = _currentPosition.x - _xOrigin;
             _isOnGround = Physics2D.OverlapCircle(checkOnGround.position, 0.1f, groundLayer);
@@ -100,6 +105,14 @@ namespace Jumping_Enemy
             walkSpeed *= -1;
             transform.localScale *= new Vector2(-1, 1);
             _facingRight = !_facingRight;
+        }
+
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Bullet"))
+            {
+                health -= 1;
+            }
         }
     }
 }
