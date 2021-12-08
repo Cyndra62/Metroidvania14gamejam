@@ -19,7 +19,7 @@ TagManager:
   - Ground
   - Bullet
   - Portal
-  - 
+  - Player
   - 
   - 
   - 
@@ -60,4 +60,6 @@ TagManager:
     locked: 0
   - name: Menus
     uniqueID: 432151063
+  - name: UI
+    uniqueID: 4063684463
     locked: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -29,6 +30,39 @@ public class PlayerShooting : MonoBehaviour
     public PlayerMovement _playerMovement;
     private HaloProjectile _haloProjectile;
 
+    private PlayerActions actions;
+
+    private void Awake()
+    {
+        actions = new PlayerActions();
+        actions.PlayerControls.Attack.performed += ctx => {
+            if (!shooting && !PauseMenu.instance.isPause)
+            {
+                Shoot();
+                //FindObjectOfType<HaloProjectile>().counterBulletReset = FindObjectOfType<HaloProjectile>().bulletTimeReset;
+            }
+        };
+        //InputSystem.onDeviceChange += (device, change) =>
+        //{
+        //    switch (change)
+        //    {
+        //        case InputDeviceChange.Reconnected:
+        //        case InputDeviceChange.Added:
+        //            if (device.GetType() == typeof(Gamepad))
+        //            {
+        //                GetComponent<PlayerInput>().SwitchCurrentControlScheme("Gamepad", device);
+        //            }
+        //            break;
+        //        case InputDeviceChange.Removed:
+        //        case InputDeviceChange.Disconnected:
+        //            if (device.GetType() == typeof(Gamepad))
+        //            {
+        //                GetComponent<PlayerInput>().SwitchCurrentControlScheme("KBM", InputSystem.GetDevice("Keyboard"), InputSystem.GetDevice("Mouse"));
+        //            }
+        //            break;
+        //    }
+        //};
+    }
 
     private void Start() 
     {
@@ -45,7 +79,15 @@ public class PlayerShooting : MonoBehaviour
     }
     private void FixedUpdate() 
     {
-        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 diff;
+        if (GetComponent<PlayerInput>().currentControlScheme.Equals("Gamepad")){
+            diff = actions.PlayerControls.FireDirection.ReadValue<Vector2>();
+        } else
+        {
+            Vector3 dir = Camera.main.ScreenToWorldPoint(actions.PlayerControls.FirePosition.ReadValue<Vector2>());
+            if (dir == null) dir = Vector3.right;
+            diff = dir - transform.position;
+        }
 
         diff.Normalize();
 
@@ -63,14 +105,7 @@ public class PlayerShooting : MonoBehaviour
         }
 
     }
-    private void Update() 
-    {
-        if (!shooting && !PauseMenu.instance.isPause && Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-            //FindObjectOfType<HaloProjectile>().counterBulletReset = FindObjectOfType<HaloProjectile>().bulletTimeReset;
-        }
-    }
+
     void Shoot()
     {
         
@@ -144,5 +179,14 @@ public class PlayerShooting : MonoBehaviour
     public void Pickup(GameObject halo)
     {
         Physics2D.IgnoreCollision(halo.GetComponent<Collider2D>(), _playerCollider, false);
+    }
+
+    private void OnEnable()
+    {
+        actions.Enable();
+    }
+    private void OnDisable()
+    {
+        actions.Disable();
     }
 }
