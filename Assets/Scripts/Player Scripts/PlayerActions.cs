@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/PlayerActions.inputactions'
 
 using System;
 using System.Collections;
@@ -6,16 +6,16 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerControls : IInputActionCollection, IDisposable
+public class @PlayerActions : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerControls()
+    public @PlayerActions()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerControls"",
+    ""name"": ""PlayerActions"",
     ""maps"": [
         {
-            ""name"": ""PControls"",
+            ""name"": ""PlayerControls"",
             ""id"": ""8ae20d1f-fab5-43b7-81ca-0b4834578f6c"",
             ""actions"": [
                 {
@@ -62,6 +62,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""FireDirection"",
                     ""type"": ""Button"",
                     ""id"": ""3a935407-e4ad-4091-aac8-af12f86725f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DownSmash"",
+                    ""type"": ""Button"",
+                    ""id"": ""512f7d68-dade-43c9-8559-3c6db6939ccb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -137,7 +145,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""cefa767f-f5af-44c7-a66b-263422690a24"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KBM"",
@@ -221,6 +229,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""FireDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea0fbbcc-b499-4d8c-838e-47d28c23e078"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DownSmash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e33a9c16-65fe-404f-805b-b7565deb8da1"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""DownSmash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -255,14 +285,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     ]
 }");
-        // PControls
-        m_PControls = asset.FindActionMap("PControls", throwIfNotFound: true);
-        m_PControls_Movement = m_PControls.FindAction("Movement", throwIfNotFound: true);
-        m_PControls_Jump = m_PControls.FindAction("Jump", throwIfNotFound: true);
-        m_PControls_Dash = m_PControls.FindAction("Dash", throwIfNotFound: true);
-        m_PControls_Attack = m_PControls.FindAction("Attack", throwIfNotFound: true);
-        m_PControls_FirePosition = m_PControls.FindAction("FirePosition", throwIfNotFound: true);
-        m_PControls_FireDirection = m_PControls.FindAction("FireDirection", throwIfNotFound: true);
+        // PlayerControls
+        m_PlayerControls = asset.FindActionMap("PlayerControls", throwIfNotFound: true);
+        m_PlayerControls_Movement = m_PlayerControls.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerControls_Jump = m_PlayerControls.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerControls_Dash = m_PlayerControls.FindAction("Dash", throwIfNotFound: true);
+        m_PlayerControls_Attack = m_PlayerControls.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerControls_FirePosition = m_PlayerControls.FindAction("FirePosition", throwIfNotFound: true);
+        m_PlayerControls_FireDirection = m_PlayerControls.FindAction("FireDirection", throwIfNotFound: true);
+        m_PlayerControls_DownSmash = m_PlayerControls.FindAction("DownSmash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -309,54 +340,59 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // PControls
-    private readonly InputActionMap m_PControls;
-    private IPControlsActions m_PControlsActionsCallbackInterface;
-    private readonly InputAction m_PControls_Movement;
-    private readonly InputAction m_PControls_Jump;
-    private readonly InputAction m_PControls_Dash;
-    private readonly InputAction m_PControls_Attack;
-    private readonly InputAction m_PControls_FirePosition;
-    private readonly InputAction m_PControls_FireDirection;
-    public struct PControlsActions
+    // PlayerControls
+    private readonly InputActionMap m_PlayerControls;
+    private IPlayerControlsActions m_PlayerControlsActionsCallbackInterface;
+    private readonly InputAction m_PlayerControls_Movement;
+    private readonly InputAction m_PlayerControls_Jump;
+    private readonly InputAction m_PlayerControls_Dash;
+    private readonly InputAction m_PlayerControls_Attack;
+    private readonly InputAction m_PlayerControls_FirePosition;
+    private readonly InputAction m_PlayerControls_FireDirection;
+    private readonly InputAction m_PlayerControls_DownSmash;
+    public struct PlayerControlsActions
     {
-        private @PlayerControls m_Wrapper;
-        public PControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_PControls_Movement;
-        public InputAction @Jump => m_Wrapper.m_PControls_Jump;
-        public InputAction @Dash => m_Wrapper.m_PControls_Dash;
-        public InputAction @Attack => m_Wrapper.m_PControls_Attack;
-        public InputAction @FirePosition => m_Wrapper.m_PControls_FirePosition;
-        public InputAction @FireDirection => m_Wrapper.m_PControls_FireDirection;
-        public InputActionMap Get() { return m_Wrapper.m_PControls; }
+        private @PlayerActions m_Wrapper;
+        public PlayerControlsActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_PlayerControls_Movement;
+        public InputAction @Jump => m_Wrapper.m_PlayerControls_Jump;
+        public InputAction @Dash => m_Wrapper.m_PlayerControls_Dash;
+        public InputAction @Attack => m_Wrapper.m_PlayerControls_Attack;
+        public InputAction @FirePosition => m_Wrapper.m_PlayerControls_FirePosition;
+        public InputAction @FireDirection => m_Wrapper.m_PlayerControls_FireDirection;
+        public InputAction @DownSmash => m_Wrapper.m_PlayerControls_DownSmash;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PControlsActions set) { return set.Get(); }
-        public void SetCallbacks(IPControlsActions instance)
+        public static implicit operator InputActionMap(PlayerControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerControlsActions instance)
         {
-            if (m_Wrapper.m_PControlsActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerControlsActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_PControlsActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PControlsActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PControlsActionsCallbackInterface.OnMovement;
-                @Jump.started -= m_Wrapper.m_PControlsActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PControlsActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PControlsActionsCallbackInterface.OnJump;
-                @Dash.started -= m_Wrapper.m_PControlsActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PControlsActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PControlsActionsCallbackInterface.OnDash;
-                @Attack.started -= m_Wrapper.m_PControlsActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_PControlsActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_PControlsActionsCallbackInterface.OnAttack;
-                @FirePosition.started -= m_Wrapper.m_PControlsActionsCallbackInterface.OnFirePosition;
-                @FirePosition.performed -= m_Wrapper.m_PControlsActionsCallbackInterface.OnFirePosition;
-                @FirePosition.canceled -= m_Wrapper.m_PControlsActionsCallbackInterface.OnFirePosition;
-                @FireDirection.started -= m_Wrapper.m_PControlsActionsCallbackInterface.OnFireDirection;
-                @FireDirection.performed -= m_Wrapper.m_PControlsActionsCallbackInterface.OnFireDirection;
-                @FireDirection.canceled -= m_Wrapper.m_PControlsActionsCallbackInterface.OnFireDirection;
+                @Movement.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnJump;
+                @Dash.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
+                @Attack.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnAttack;
+                @FirePosition.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFirePosition;
+                @FirePosition.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFirePosition;
+                @FirePosition.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFirePosition;
+                @FireDirection.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFireDirection;
+                @FireDirection.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFireDirection;
+                @FireDirection.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFireDirection;
+                @DownSmash.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDownSmash;
+                @DownSmash.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDownSmash;
+                @DownSmash.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDownSmash;
             }
-            m_Wrapper.m_PControlsActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
@@ -377,10 +413,13 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @FireDirection.started += instance.OnFireDirection;
                 @FireDirection.performed += instance.OnFireDirection;
                 @FireDirection.canceled += instance.OnFireDirection;
+                @DownSmash.started += instance.OnDownSmash;
+                @DownSmash.performed += instance.OnDownSmash;
+                @DownSmash.canceled += instance.OnDownSmash;
             }
         }
     }
-    public PControlsActions @PControls => new PControlsActions(this);
+    public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
     private int m_KBMSchemeIndex = -1;
     public InputControlScheme KBMScheme
     {
@@ -399,7 +438,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface IPControlsActions
+    public interface IPlayerControlsActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -407,5 +446,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnFirePosition(InputAction.CallbackContext context);
         void OnFireDirection(InputAction.CallbackContext context);
+        void OnDownSmash(InputAction.CallbackContext context);
     }
 }

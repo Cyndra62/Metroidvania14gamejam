@@ -6,15 +6,15 @@ public class PlayerJumping : MonoBehaviour
 {
     public float _fallMultiplier = 2.5f;
     public float _lowJumpMultiplier = 2f;
-    private PlayerControls controls;
+    private PlayerActions actions;
 
     Rigidbody2D _rb;
 
     void Awake() 
     {
         _rb = GetComponent<Rigidbody2D>();
-        controls = new PlayerControls();
-        controls.PControls.Jump.performed += ctx =>
+        actions = new PlayerActions();
+        actions.PlayerControls.Jump.performed += ctx =>
         {
             if (_rb.velocity.y > 0)
             {
@@ -33,11 +33,11 @@ public class PlayerJumping : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Enable();
+        actions.Enable();
     }
 
     private void OnDisable()
     {
-        controls.Disable();
+        actions.Disable();
     }
 }

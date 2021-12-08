@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement instance;
     private PlayerCollision _playerCollision;
-    private PlayerControls controls;
+    private PlayerActions actions;
 
     private Rigidbody2D _rb;
 
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        controls = new PlayerControls();
+        actions = new PlayerActions();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -66,8 +66,8 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         _playerCollision =GetComponent<PlayerCollision>();
-        controls.PControls.Dash.performed += ctx => { if (_nextDash <= Time.time && canDash && PlayerPrefs.GetInt("DashEnabled", 0) == 1) StartCoroutine(Dash()); };
-        controls.PControls.Jump.performed += ctx =>
+        actions.PlayerControls.Dash.performed += ctx => { if (_nextDash <= Time.time && canDash && PlayerPrefs.GetInt("DashEnabled", 0) == 1) StartCoroutine(Dash()); };
+        actions.PlayerControls.Jump.performed += ctx =>
         {
             if (_playerCollision._onGround)
             {
@@ -84,8 +84,8 @@ public class PlayerMovement : MonoBehaviour
                 Invoke("CancelWallJump", 0.2f);
             }
         };
-        controls.PControls.Movement.performed += ctx => dir = ctx.ReadValue<Vector2>();
-        controls.PControls.Movement.canceled += ctx => dir = Vector2.zero;
+        actions.PlayerControls.Movement.performed += ctx => dir = ctx.ReadValue<Vector2>();
+        actions.PlayerControls.Movement.canceled += ctx => dir = Vector2.zero;
     }
 
     private void Update()
@@ -230,11 +230,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PControls.Enable();
+        actions.PlayerControls.Attack.Enable();
+        actions.PlayerControls.Dash.Enable();
+        actions.PlayerControls.FireDirection.Enable();
+        actions.PlayerControls.FirePosition.Enable();
+        actions.PlayerControls.Jump.Enable();
+        actions.PlayerControls.Movement.Enable();
     }
 
     private void OnDisable()
     {
-        controls.PControls.Disable();
+        actions.PlayerControls.Attack.Disable();
+        actions.PlayerControls.Dash.Disable();
+        actions.PlayerControls.FireDirection.Disable();
+        actions.PlayerControls.FirePosition.Disable();
+        actions.PlayerControls.Jump.Disable();
+        actions.PlayerControls.Movement.Disable();
     }
 }

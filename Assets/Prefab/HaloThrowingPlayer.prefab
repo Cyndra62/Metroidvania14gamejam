@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 5659680942542709836}
   - component: {fileID: 8750637167688731863}
   - component: {fileID: 5524149439375399433}
+  - component: {fileID: 4789390377159715775}
   m_Layer: 9
   m_Name: HaloThrowingPlayer
   m_TagString: Player
@@ -401,6 +402,29 @@ MonoBehaviour:
   m_DefaultActionMap: PControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4789390377159715775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233678256866150538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb337ff38c8e9c40b78355e11c8dfa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smashableTiles:
+  - {fileID: 11400000, guid: 9827448b3d35c774594c8e95c4ec9e42, type: 2}
+  - {fileID: 11400000, guid: c0e9fceee5c6f664d9cc0ff0b8c35cad, type: 2}
+  - {fileID: 11400000, guid: cfc6c3a024d8ab646b8fb206c1b8297b, type: 2}
+  tilemap: {fileID: 0}
+  smashUpForce: 10
+  smashDuration: 0.3
+  smashGravity: 7
+  underOffset: {x: 0, y: -1, z: 0}
+  player: {fileID: 8233678256866150512}
+  playerAnimator: {fileID: 0}
 --- !u!1 &8233678258140200392
 GameObject:
   m_ObjectHideFlags: 0

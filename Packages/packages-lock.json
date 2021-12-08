@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.nullkal.unisense": {
+      "version": "file:../UniSense",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.inputsystem": "1.0.1"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "5.0.9",
       "depth": 0,

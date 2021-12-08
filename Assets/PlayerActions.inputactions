@@ -1,8 +1,8 @@
 {
-    "name": "PlayerControls",
+    "name": "PlayerActions",
     "maps": [
         {
-            "name": "PControls",
+            "name": "PlayerControls",
             "id": "8ae20d1f-fab5-43b7-81ca-0b4834578f6c",
             "actions": [
                 {
@@ -49,6 +49,14 @@
                     "name": "FireDirection",
                     "type": "Button",
                     "id": "3a935407-e4ad-4091-aac8-af12f86725f7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DownSmash",
+                    "type": "Button",
+                    "id": "512f7d68-dade-43c9-8559-3c6db6939ccb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -124,7 +132,7 @@
                 {
                     "name": "",
                     "id": "cefa767f-f5af-44c7-a66b-263422690a24",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
@@ -206,6 +214,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "FireDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea0fbbcc-b499-4d8c-838e-47d28c23e078",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "DownSmash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e33a9c16-65fe-404f-805b-b7565deb8da1",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "DownSmash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

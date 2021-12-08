@@ -29,12 +29,12 @@ public class PlayerShooting : MonoBehaviour
     public PlayerMovement _playerMovement;
     private HaloProjectile _haloProjectile;
 
-    private PlayerControls controls;
+    private PlayerActions actions;
 
     private void Awake()
     {
-        controls = new PlayerControls();
-        controls.PControls.Attack.performed += ctx => Shoot();
+        actions = new PlayerActions();
+        actions.PlayerControls.Attack.performed += ctx => Shoot();
         //InputSystem.onDeviceChange += (device, change) =>
         //{
         //    switch (change)
@@ -73,11 +73,12 @@ public class PlayerShooting : MonoBehaviour
     {
         Vector3 diff;
         if (GetComponent<PlayerInput>().currentControlScheme.Equals("Gamepad")){
-            diff = controls.PControls.FireDirection.ReadValue<Vector2>();
-            Debug.Log(diff);
+            diff = actions.PlayerControls.FireDirection.ReadValue<Vector2>();
         } else
         {
-            diff = Camera.main.ScreenToWorldPoint(controls.PControls.FirePosition.ReadValue<Vector2>()) - transform.position;
+            Vector3 dir = Camera.main.ScreenToWorldPoint(actions.PlayerControls.FirePosition.ReadValue<Vector2>());
+            if (dir == null) dir = Vector3.right;
+            diff = dir - transform.position;
         }
 
         diff.Normalize();
@@ -171,10 +172,10 @@ public class PlayerShooting : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Enable();
+        actions.Enable();
     }
     private void OnDisable()
     {
-        controls.Disable();
+        actions.Disable();
     }
 }
