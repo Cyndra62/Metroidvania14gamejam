@@ -297,18 +297,7 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         {
             ""name"": ""KBM"",
             ""bindingGroup"": ""KBM"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                },
-                {
-                    ""devicePath"": ""<Mouse>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
+            ""devices"": []
         },
         {
             ""name"": ""Gamepad"",
