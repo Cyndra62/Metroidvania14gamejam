@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     public float enterSceneTime;
     private float counterEnterScene;
     public float endTime;
-    public Image theSprite;
+    public GameObject fadeScreen;
     [SerializeField] GameObject continueButton;
     [SerializeField] public GameObject mainMenu;
     
@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
     
     private void Start()
     {
+        fadeScreen.SetActive(true);
         mainMenu.SetActive(true);
         //FindObjectOfType<PlayerShooting>().shooting = true;
         //FindObjectOfType<PlayerShooting>()._canShoot = false;
@@ -31,7 +32,7 @@ public class MainMenu : MonoBehaviour
             continueButton.SetActive(false);
         }
 
-        theSprite.raycastTarget = true;
+        //theSprite.raycastTarget = true;
         counterEnterScene = enterSceneTime;
     }
 
@@ -72,7 +73,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator RaycastTargetCo()
     {
         yield return new WaitForSeconds(endTime);
-        theSprite.raycastTarget = false;
+        //theSprite.raycastTarget = false;
     }
 
     public void NewGame()

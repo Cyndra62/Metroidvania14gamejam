@@ -18,6 +18,7 @@ public class ClosetManager : MonoBehaviour
 
     private void Start()
     {
+        IsSavedScene.instance.canShoot = false;
         if (IsSavedScene.instance.isContinue == true)
         {
             GameManager.instance.LoadData();

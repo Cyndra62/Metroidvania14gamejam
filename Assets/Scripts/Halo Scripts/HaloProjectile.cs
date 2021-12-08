@@ -10,8 +10,8 @@ public class HaloProjectile : MonoBehaviour
     public PlayerShooting _playerShooting;
     public string _haloColor;
 
-    public float bulletTimeReset, bulletSpeedTime;
-    public float counterBulletReset,counterSpeedBullet;
+    public float bulletTimeReset, bulletSpeedTime, gravityTime;
+    public float counterBulletReset,counterSpeedBullet, counterGravity;
     public bool shooted, close;
     public float moveSpeed;
     public Rigidbody2D theRB;
@@ -22,60 +22,50 @@ public class HaloProjectile : MonoBehaviour
         _playerShooting = FindObjectOfType<PlayerShooting>();
         shooted = false;
         close = false;
-        //Vector3 bullet = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerMovement>().transform.position, moveSpeed * Time.deltaTime);
         moveSpeed = 0;
     }
 
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, FindObjectOfType<PlayerMovement>().transform.position, moveSpeed * Time.deltaTime);
-        if (_playerShooting._ammoCount < 2 && !shooted)
+        if (FindObjectOfType<PlayerShooting>()._ammoCount < 2 && !shooted)
         {
             shooted = true;
             close = true;
-            //moveSpeed = 0;
+            IsSavedScene.instance.canTravel = false;
             counterBulletReset = bulletTimeReset;
         }
+
+       // if(FindObjectOfType<PlayerShooting>()._ammoCount == 2 )
+        //{
+         //   FindObjectOfType<IsSavedScene>().canTravel = true;
+        //}
 
         if (counterBulletReset > 0)
         {
             counterBulletReset -= Time.deltaTime;
             if (counterBulletReset <= 0)
             {
-                //transform.position = Vector3.MoveTowards(transform.position,FindObjectOfType<PlayerMovement>().transform.position, moveSpeed * Time.deltaTime);
-                //shooted = false;
                 if(_playerShooting._ammoCount == 2 && shooted)
                 {
                     shooted = false;
                     close = false;
+                    //IsSavedScene.instance.canTravel = true;
                 }
-
-                /*if (close)
-                {
-                    moveSpeed = 5;
-                }
-                else
-                {
-                    moveSpeed = 0;
-                }*/
                 moveSpeed = 5;
                 theRB.gravityScale = 0;
                 GetComponent<BoxCollider2D>().enabled = false;
-             
-                
-                
             }
         }
         else
         {
             if (Vector3.Distance(transform.position, FindObjectOfType<PlayerMovement>().transform.position) < 1f)
             {
-
-                //moveSpeed = 5;
-                
                 GetComponent<BoxCollider2D>().enabled = true;
                 theRB.gravityScale = 1;
                 counterSpeedBullet = bulletSpeedTime;
+                counterGravity = gravityTime;
+                //StartCoroutine(MoveResetCo());
             }
         }
 
@@ -88,8 +78,28 @@ public class HaloProjectile : MonoBehaviour
                 counterBulletReset = bulletTimeReset;
             }
         }
+        if(transform.position.y <= -1)
+        {
+            transform.position = new Vector2(transform.position.x, -0.5f);
+            theRB.velocity = new Vector2(0, 0);
+        }
 
-        
+        if(counterGravity > 0)
+        {
+            counterGravity -= Time.deltaTime;
+            if(counterGravity <= 0)
+            {
+                theRB.gravityScale = 1;
+            }
+        }
+        else
+        {
+            if(Vector3.Distance(transform.position, FindObjectOfType<PlayerMovement>().transform.position) < 1f)
+            {
+                //GetComponent<BoxCollider2D>().enabled = true;
+                theRB.gravityScale = 0;
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -108,7 +118,6 @@ public class HaloProjectile : MonoBehaviour
             gameObject.SetActive(false);
             _wallCheck= false;
         }
-        
     }
 
     private void OnDrawGizmos()
@@ -117,12 +126,5 @@ public class HaloProjectile : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, sphereRadius);
     }
 
-    private IEnumerator MoveResetCo()
-    {
-        yield return new WaitForSeconds(.2f);
-        
-        moveSpeed = 0;
-        yield return new WaitForSeconds(.2f);
-        counterBulletReset = bulletTimeReset;
-    }
+    
 }

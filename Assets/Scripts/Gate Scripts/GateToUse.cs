@@ -8,11 +8,12 @@ public class GateToUse : MonoBehaviour
     public string gateToLoad;
     public string areaTransitionName;
     public float waitToFade;
+
     
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && IsSavedScene.instance.canTravel == true)
         {
             UiFade.instance.FadeToBlack();
             PlayerMovement.instance.areaTransitionName = areaTransitionName;

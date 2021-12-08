@@ -6,7 +6,7 @@ public class IsSavedScene : MonoBehaviour
 {
     public static IsSavedScene instance;
     public bool isContinue;
-    public bool switchIsOn, canShoot;
+    public bool switchIsOn, canShoot, canTravel;
 
     private void Awake()
     {
@@ -30,6 +30,18 @@ public class IsSavedScene : MonoBehaviour
         isContinue = false;
         switchIsOn = false;
         canShoot = true;
+        canTravel = true;
+    }
+    private void Update()
+    {
+        if(FindObjectOfType<PlayerShooting>()._ammoCount >= 2)
+        {
+            canTravel = true;
+        }
+        else
+        {
+            canTravel = false;
+        }
     }
 
 

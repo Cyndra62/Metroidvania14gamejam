@@ -269,6 +269,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2940503178811451328}
     m_Modifications:
+    - target: {fileID: 5262200028308345524, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5262200028308345525, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: m_Name
       value: RedHalo
@@ -338,6 +342,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
+      propertyPath: gravityTime
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: sphereRadius
       value: 1
       objectReference: {fileID: 0}
@@ -368,6 +376,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2940503178811451328}
     m_Modifications:
+    - target: {fileID: 590794714753663209, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 590794714753663210, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -435,6 +447,10 @@ PrefabInstance:
     - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: moveSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
+      propertyPath: gravityTime
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: sphereRadius
@@ -519,6 +535,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3407445583601860653, guid: 0bb5079def34222469224d2898feefee, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3407445583601860654, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -534,6 +554,10 @@ PrefabInstance:
     - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: moveSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
+      propertyPath: gravityTime
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: sphereRadius

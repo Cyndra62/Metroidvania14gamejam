@@ -162,8 +162,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2480116, y: -0.06955171}
-  m_Size: {x: 0.17308067, y: 0.4747877}
+  m_Offset: {x: 0.4969084, y: -0.026609467}
+  m_Size: {x: 0.7683356, y: 0.79286236}
   m_Direction: 0
 --- !u!114 &9081947230292831144
 MonoBehaviour:
@@ -179,4 +179,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gateToLoad: UnderneathTheBed
   areaTransitionName: Gate-1
-  waitToFade: 1
+  waitToFade: 1.2

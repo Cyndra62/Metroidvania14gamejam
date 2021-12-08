@@ -87,6 +87,7 @@ public class PlayerShooting : MonoBehaviour
         {
             if(_ammoCount==2)
             {
+                //IsSavedScene.instance.canTravel = true;
                 newHalo =_ammoLineup[_ammoCount].gameObject;
             }
             else if(_ammoCount==1)

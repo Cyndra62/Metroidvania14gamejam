@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1607493028928577284, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1607493029249895040, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
       propertyPath: m_Pivot.x
@@ -246,17 +246,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8965484795010433852, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
   m_PrefabInstance: {fileID: 120325867}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &120325870 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1607493028928577286, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
+--- !u!1 &120325870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1607493028928577284, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
   m_PrefabInstance: {fileID: 120325867}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &141034231
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterSceneTime: 2.5
   endTime: 3
-  theSprite: {fileID: 120325870}
+  fadeScreen: {fileID: 120325870}
   continueButton: {fileID: 120325869}
   mainMenu: {fileID: 120325868}
 --- !u!4 &1147159162
