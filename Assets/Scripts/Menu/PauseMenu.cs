@@ -14,7 +14,6 @@ public class PauseMenu : MonoBehaviour
 
     private PlayerActions actions;
 
-
     private void Awake()
     {
         instance = this;

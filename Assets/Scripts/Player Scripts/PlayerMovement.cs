@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            actions = new PlayerActions();
         }
         else
         {
@@ -58,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        actions = new PlayerActions();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -243,21 +243,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        actions.PlayerControls.Attack.Enable();
-        actions.PlayerControls.Dash.Enable();
-        actions.PlayerControls.FireDirection.Enable();
-        actions.PlayerControls.FirePosition.Enable();
-        actions.PlayerControls.Jump.Enable();
-        actions.PlayerControls.Movement.Enable();
+        actions.PlayerControls.Enable();
     }
 
     private void OnDisable()
     {
-        actions.PlayerControls.Attack.Disable();
-        actions.PlayerControls.Dash.Disable();
-        actions.PlayerControls.FireDirection.Disable();
-        actions.PlayerControls.FirePosition.Disable();
-        actions.PlayerControls.Jump.Disable();
-        actions.PlayerControls.Movement.Disable();
+        //actions.PlayerControls.Disable();
     }
 }

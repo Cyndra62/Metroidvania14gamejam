@@ -63415,14 +63415,6 @@ PrefabInstance:
       propertyPath: smashableTiles.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: d23582b1ab4f8494686ef0fca887b2b7, type: 2}
-    - target: {fileID: 5524149439375399433, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: PlayerControls
-      objectReference: {fileID: 0}
-    - target: {fileID: 5524149439375399433, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7506924741823340932, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: _shootableHalo
       value: 
