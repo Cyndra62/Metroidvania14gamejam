@@ -27,17 +27,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-           SaveData();
-        }
+        // TODO: I will fix this later - iWeeti
+        //if(Input.GetKeyDown(KeyCode.O))
+        //{
+        //   SaveData();
+        //}
 
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
-            //TheHubManager.instance.isSaved = true;
-            //LoadData();
-        }
+        //if(Input.GetKeyDown(KeyCode.P))
+        //{
+        //    SceneManager.LoadScene(PlayerPrefs.GetString("Current_scene"));
+        //    //TheHubManager.instance.isSaved = true;
+        //    //LoadData();
+        //}
     }
     public void SaveData()
     {

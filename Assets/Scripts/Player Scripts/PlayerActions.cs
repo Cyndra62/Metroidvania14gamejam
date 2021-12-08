@@ -253,6 +253,44 @@ public class @PlayerActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GameControls"",
+            ""id"": ""4fd0d8a9-3bfe-4576-9afd-aaf1c4eb2ff1"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""54537255-9357-4811-b9e1-5a1c588789f5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3b344a74-6fe2-49e1-ad73-e09792db02e7"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ac31a24-36df-4c8e-96b8-adc837675fbf"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KBM"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -294,6 +332,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         m_PlayerControls_FirePosition = m_PlayerControls.FindAction("FirePosition", throwIfNotFound: true);
         m_PlayerControls_FireDirection = m_PlayerControls.FindAction("FireDirection", throwIfNotFound: true);
         m_PlayerControls_DownSmash = m_PlayerControls.FindAction("DownSmash", throwIfNotFound: true);
+        // GameControls
+        m_GameControls = asset.FindActionMap("GameControls", throwIfNotFound: true);
+        m_GameControls_Pause = m_GameControls.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -420,6 +461,39 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
+
+    // GameControls
+    private readonly InputActionMap m_GameControls;
+    private IGameControlsActions m_GameControlsActionsCallbackInterface;
+    private readonly InputAction m_GameControls_Pause;
+    public struct GameControlsActions
+    {
+        private @PlayerActions m_Wrapper;
+        public GameControlsActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_GameControls_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_GameControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IGameControlsActions instance)
+        {
+            if (m_Wrapper.m_GameControlsActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_GameControlsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameControlsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameControlsActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_GameControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public GameControlsActions @GameControls => new GameControlsActions(this);
     private int m_KBMSchemeIndex = -1;
     public InputControlScheme KBMScheme
     {
@@ -447,5 +521,9 @@ public class @PlayerActions : IInputActionCollection, IDisposable
         void OnFirePosition(InputAction.CallbackContext context);
         void OnFireDirection(InputAction.CallbackContext context);
         void OnDownSmash(InputAction.CallbackContext context);
+    }
+    public interface IGameControlsActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

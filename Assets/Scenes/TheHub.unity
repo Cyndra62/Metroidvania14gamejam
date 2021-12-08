@@ -461,11 +461,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &290335644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4924705729794853110, guid: 3ba381c9687d0b34e80b465f51589f57, type: 3}
-  m_PrefabInstance: {fileID: 2068567625}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &299097781
 GameObject:
   m_ObjectHideFlags: 0
@@ -63400,10 +63395,38 @@ PrefabInstance:
       propertyPath: m_ApplyToSortingLayers.Array.data[5]
       value: 432151063
       objectReference: {fileID: 0}
+    - target: {fileID: 4789390377159715775, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: tilemap
+      value: 
+      objectReference: {fileID: 365800343}
+    - target: {fileID: 4789390377159715775, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: smashableTiles.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789390377159715775, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: smashableTiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c0abda7b5ff0f1d41a4ccc5cf5c89635, type: 2}
+    - target: {fileID: 4789390377159715775, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: smashableTiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: a5670831ebf04d44e970854c773a4f95, type: 2}
+    - target: {fileID: 4789390377159715775, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: smashableTiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: d23582b1ab4f8494686ef0fca887b2b7, type: 2}
+    - target: {fileID: 5524149439375399433, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: PlayerControls
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524149439375399433, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7506924741823340932, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: _shootableHalo
       value: 
-      objectReference: {fileID: 290335644}
+      objectReference: {fileID: 4924705729794853110, guid: 3ba381c9687d0b34e80b465f51589f57, type: 3}
     - target: {fileID: 8233678256866150512, guid: db46024c2e4dfe34781b2f299d947398, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -63845,6 +63868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shootable Halos
       objectReference: {fileID: 0}
+    - target: {fileID: 4924705729794853110, guid: 3ba381c9687d0b34e80b465f51589f57, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ba381c9687d0b34e80b465f51589f57, type: 3}
 --- !u!1001 &1607493029802290725
@@ -63854,6 +63881,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1607493028928577287, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1607493029249895040, guid: e9d3efc8ef7bdc64a91f365dfb5ef59e, type: 3}
       propertyPath: m_Pivot.x
       value: 0

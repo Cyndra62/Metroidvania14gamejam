@@ -12,10 +12,15 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public float waitToChangeScene;
     public bool isPause;
 
+    private PlayerActions actions;
+
 
     private void Awake()
     {
         instance = this;
+        actions = new PlayerActions();
+        actions.GameControls.Pause.Enable();
+        actions.GameControls.Pause.performed += ctx => PauseUnpause();
     }
 
     private void Start()
@@ -36,10 +41,10 @@ public class PauseMenu : MonoBehaviour
             FindObjectOfType<PlayerShooting>()._canShoot = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-           PauseUnpause();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //   PauseUnpause();
+        //}
     }
 
     public void PauseUnpause()

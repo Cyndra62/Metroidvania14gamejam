@@ -80,6 +80,7 @@ public class PlayerShooting : MonoBehaviour
     private void FixedUpdate() 
     {
         Vector3 diff;
+        if (GetComponent<PlayerInput>().currentControlScheme == null) return;
         if (GetComponent<PlayerInput>().currentControlScheme.Equals("Gamepad")){
             diff = actions.PlayerControls.FireDirection.ReadValue<Vector2>();
         } else
