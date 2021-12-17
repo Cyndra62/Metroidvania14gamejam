@@ -13,7 +13,7 @@ public class CameraControler : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        FindObjectOfType<PlayerMovement>();
+        FindObjectOfType<Player>();
     }
 
     private void Start()
@@ -25,7 +25,7 @@ public class CameraControler : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(Mathf.Clamp(FindObjectOfType<PlayerMovement>().transform.position.x, minWidth, maxWidth), Mathf.Clamp(FindObjectOfType<PlayerMovement>().transform.position.y, minHeight, maxHeight), transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(FindObjectOfType<Player>().transform.position.x, minWidth, maxWidth), Mathf.Clamp(FindObjectOfType<Player>().transform.position.y, minHeight, maxHeight), transform.position.z);
         Vector2 amountToMove = new Vector2(transform.position.x - lastPos.x, transform.position.y - lastPos.y);
     }
 }

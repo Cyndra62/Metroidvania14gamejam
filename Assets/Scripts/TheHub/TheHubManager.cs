@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TheHubManager : MonoBehaviour
 {
     public static TheHubManager instance;
-    public GameObject fadeScreen, mainMenu, optionsMenu, pauseMenu;
+    public GameObject fadeScreen, mainMenu, optionsMenu, pauseMenu, uiHealth, uiHalosVisual;
     public float inLevelTime;
     private float counterInLevel;
     public Transform playerStartPosition;
@@ -21,9 +21,11 @@ public class TheHubManager : MonoBehaviour
     {
         IsSavedScene.instance.canShoot = false;
         mainMenu.SetActive(false);
+        uiHealth.SetActive(true);
+        uiHalosVisual.SetActive(true);
         //FindObjectOfType<PlayerShooting>().shooting = false;
         //FindObjectOfType<PlayerShooting>()._canShoot = true;
-        FindObjectOfType<PlayerMovement>().transform.position = playerStartPosition.transform.position;
+        FindObjectOfType<Player>().transform.position = playerStartPosition.transform.position;
 
         isSaved = false;
         counterInLevel = inLevelTime;
@@ -48,7 +50,7 @@ public class TheHubManager : MonoBehaviour
                     GameManager.instance.LoadData();
                     IsSavedScene.instance.isContinue = false;
                 }*/
-                if (IsSavedScene.instance.canShoot)
+                /*if (IsSavedScene.instance.canShoot)
                 {
                     FindObjectOfType<PlayerShooting>().shooting = false;
                     FindObjectOfType<PlayerShooting>()._canShoot = true;
@@ -62,7 +64,7 @@ public class TheHubManager : MonoBehaviour
                     IsSavedScene.instance.isContinue = false;
                     //IsSavedScene.instance.isSaved = true;
 
-                }
+                }*/
                 UiFade.instance.FadeFromBlack();
             }
         }

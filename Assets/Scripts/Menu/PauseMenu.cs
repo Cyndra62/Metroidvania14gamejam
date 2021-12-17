@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public string mainMenu;
     [SerializeField] public float waitToChangeScene;
+    public GameObject uiHealthVisual, uiHalosVisual;
     public bool isPause;
 
 
@@ -27,13 +28,13 @@ public class PauseMenu : MonoBehaviour
     {
         if (IsSavedScene.instance.canShoot)
         {
-            FindObjectOfType<PlayerShooting>().shooting = true;
-            FindObjectOfType<PlayerShooting>()._canShoot = false;
+            //FindObjectOfType<PlayerShooting>().shooting = true;
+            //FindObjectOfType<PlayerShooting>()._canShoot = false;
         }
         else
         {
-            FindObjectOfType<PlayerShooting>().shooting = false;
-            FindObjectOfType<PlayerShooting>()._canShoot = true;
+            //FindObjectOfType<PlayerShooting>().shooting = false;
+            //FindObjectOfType<PlayerShooting>()._canShoot = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -74,6 +75,8 @@ public class PauseMenu : MonoBehaviour
     private IEnumerator MainMenuCo()
     {
         yield return new WaitForSeconds(waitToChangeScene);
+        uiHalosVisual.SetActive(false);
+        uiHealthVisual.SetActive(false);
         SceneManager.LoadScene(mainMenu);
     }
 

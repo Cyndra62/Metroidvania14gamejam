@@ -8,9 +8,9 @@ public class AreaToEnter : MonoBehaviour
 
     void Start()
     {
-        if (transitionName == PlayerMovement.instance.areaTransitionName)
+        if (transitionName == Player.instance.areaTransitionName)
         {
-            PlayerMovement.instance.transform.position = transform.position;
+            Player.instance.transform.position = transform.position;
         }
     }
 }

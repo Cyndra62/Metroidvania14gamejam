@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _wallJumpVelocityX;
     [SerializeField] private float _wallJumpVelocityY;
+    public float risingTime, jumpingTime;
+    private float counterRising, counterJump;
+    public float risingSpeed;
+    public Transform whereToGo;
+    public float whereSpeed;
 
     [Header ("Booleans")]
     [SerializeField] public bool _isDoubleJump = true;
@@ -51,9 +56,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start() 
     {
+        //whereToGo.parent = null;
         stopInput = false;
         _rb = GetComponent<Rigidbody2D>();
-        _playerCollision =GetComponent<PlayerCollision>();
+        _playerCollision = GetComponent<PlayerCollision>();
     }
 
     private void Update()
@@ -134,6 +140,35 @@ public class PlayerMovement : MonoBehaviour
 
             anim.SetFloat("move", Mathf.Abs(_rb.velocity.x));
         }
+        if(counterJump >0)
+        {
+            counterJump -= Time.deltaTime;
+            
+            if (counterJump <= 0)
+            {
+                //anim.SetTrigger("rising");
+                counterRising = risingTime;
+            }
+
+        }
+        if(counterRising > 0)
+        {
+            counterRising -= Time.deltaTime;
+            _rb.gravityScale = 0;
+            FindObjectOfType<PlayerMovement>().transform.position = Vector3.MoveTowards(transform.position, whereToGo.position, whereSpeed * Time.deltaTime);
+            if (counterRising <= 0)
+            {
+                //_rb.gravityScale = 1;
+                //stopInput = false;
+                if (transform.position.x == whereToGo.position.x)
+                {
+                    _rb.gravityScale = 1;
+                    FindObjectOfType<PlayerMovement>().transform.position = new Vector2(transform.position.x, transform.position.y);
+                }  
+            }
+           
+        }
+        
     }
 
     private static Vector2 GetInput()
@@ -181,4 +216,12 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = Scaler;
     }
     
+    public void PlayerGravityZero()
+    {
+        //_rb.gravityScale = 0;
+        //stopInput = true;
+        //counterRising = risingTime;
+        counterJump = jumpingTime;
+
+    }
 }

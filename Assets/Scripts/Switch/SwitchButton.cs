@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchButton : MonoBehaviour
 {
     public static SwitchButton instance;
-    public GameObject objectToSwitch;
+    public GameObject platform;
     private SpriteRenderer theSR;
     public Sprite downSprite, upSprite;
     private bool hasSwitched;
@@ -21,15 +21,15 @@ public class SwitchButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsSavedScene.instance.switchIsOn)
+        if (IsSavedScene.instance.switchIsOn)
         {
-            objectToSwitch.SetActive(true);
+            platform.SetActive(true);
             theSR.sprite = downSprite;
             hasSwitched = true;
         }
         else
         {
-            objectToSwitch.SetActive(false);
+            platform.SetActive(false);
             theSR.sprite = upSprite;
             hasSwitched = false;
         }
@@ -42,12 +42,12 @@ public class SwitchButton : MonoBehaviour
 
             if (activateOnSwitch)
             {
-                objectToSwitch.SetActive(true);
+                platform.SetActive(true);
 
             }
             else
             {
-                objectToSwitch.SetActive(false);
+                platform.SetActive(false);
             }
 
 

@@ -10,6 +10,7 @@ public class ClosetManager : MonoBehaviour
     private float counterInLevel;
     public Transform playerSpawnPoint;
     public bool isSaved;
+    public GameObject uiHealthVisual, uiHalosVisual;
 
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class ClosetManager : MonoBehaviour
 
     private void Start()
     {
+        uiHalosVisual.SetActive(true);
+        uiHealthVisual.SetActive(true);
         IsSavedScene.instance.canShoot = false;
         if (IsSavedScene.instance.isContinue == true)
         {

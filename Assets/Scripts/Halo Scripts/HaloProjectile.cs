@@ -10,8 +10,8 @@ public class HaloProjectile : MonoBehaviour
     public PlayerShooting _playerShooting;
     public string _haloColor;
 
-    public float bulletTimeReset, bulletSpeedTime, gravityTime;
-    public float counterBulletReset,counterSpeedBullet, counterGravity;
+    public float bulletTimeReset, bulletSpeedTime, gravityTime, gravity2Time;
+    public float counterBulletReset,counterSpeedBullet, counterGravity, counterGravity2;
     public bool shooted, close;
     public float moveSpeed;
     public Rigidbody2D theRB;
@@ -36,9 +36,9 @@ public class HaloProjectile : MonoBehaviour
             counterBulletReset = bulletTimeReset;
         }
 
-       // if(FindObjectOfType<PlayerShooting>()._ammoCount == 2 )
+        // if(FindObjectOfType<PlayerShooting>()._ammoCount == 2 )
         //{
-         //   FindObjectOfType<IsSavedScene>().canTravel = true;
+        //   FindObjectOfType<IsSavedScene>().canTravel = true;
         //}
 
         if (counterBulletReset > 0)
@@ -46,20 +46,20 @@ public class HaloProjectile : MonoBehaviour
             counterBulletReset -= Time.deltaTime;
             if (counterBulletReset <= 0)
             {
-                if(_playerShooting._ammoCount == 2 && shooted)
+                if (_playerShooting._ammoCount == 2 && shooted)
                 {
                     shooted = false;
                     close = false;
                     //IsSavedScene.instance.canTravel = true;
                 }
-                moveSpeed = 5;
+                moveSpeed = 6;
                 theRB.gravityScale = 0;
                 GetComponent<BoxCollider2D>().enabled = false;
             }
         }
         else
         {
-            if (Vector3.Distance(transform.position, FindObjectOfType<PlayerMovement>().transform.position) < 1f)
+            if (Vector3.Distance(transform.position, FindObjectOfType<PlayerMovement>().transform.position) < 1f && close)
             {
                 GetComponent<BoxCollider2D>().enabled = true;
                 theRB.gravityScale = 1;
@@ -69,36 +69,51 @@ public class HaloProjectile : MonoBehaviour
             }
         }
 
-        if(counterSpeedBullet > 0)
+        if (counterSpeedBullet > 0)
         {
             counterSpeedBullet -= Time.deltaTime;
-            if(counterSpeedBullet <= 0)
+            if (counterSpeedBullet <= 0)
             {
                 moveSpeed = 0;
                 counterBulletReset = bulletTimeReset;
             }
         }
-        if(transform.position.y <= -1)
+        if (transform.position.y <= -1)
         {
             transform.position = new Vector2(transform.position.x, -0.5f);
             theRB.velocity = new Vector2(0, 0);
         }
 
-        if(counterGravity > 0)
+        if (counterGravity > 0)
         {
             counterGravity -= Time.deltaTime;
-            if(counterGravity <= 0)
+            if (counterGravity <= 0)
             {
                 theRB.gravityScale = 1;
+                counterGravity2 = gravity2Time;
             }
         }
         else
         {
-            if(Vector3.Distance(transform.position, FindObjectOfType<PlayerMovement>().transform.position) < 1f)
+            if (Vector3.Distance(transform.position, FindObjectOfType<PlayerMovement>().transform.position) < 1f && close)
             {
                 //GetComponent<BoxCollider2D>().enabled = true;
                 theRB.gravityScale = 0;
             }
+        }
+        if (counterGravity2 > 0)
+        {
+            counterGravity2 -= Time.deltaTime;
+            if (counterGravity2 <= 0)
+            {
+                theRB.gravityScale = 0;
+                moveSpeed = 6;
+            }
+        }
+
+        if(!close)
+        {
+            moveSpeed = 0;
         }
     }
 

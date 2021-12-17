@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 8233678258140200395}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1753407926476630274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3851846859489227813}
+  m_Layer: 0
+  m_Name: Where to go
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3851846859489227813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753407926476630274}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8233678256866150512}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3297798455619761055
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +140,7 @@ MonoBehaviour:
   m_Color: {r: 0.58620465, g: 0.4227661, b: 0.5943396, a: 1}
   m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 49a998b900000000317fb077c187cf059f873446171ac219
+  m_ApplyToSortingLayers: 49a998b900000000fde02f28317fb077c187cf059f873446171ac219
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -171,6 +201,7 @@ Transform:
   - {fileID: 3082501935119974743}
   - {fileID: 3246401286380035922}
   - {fileID: 4818659809748517432}
+  - {fileID: 3851846859489227813}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -212,7 +243,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2008055601
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8562657960537730344, guid: 4f4ae709748fe714aa430c97515fd607, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -241,7 +272,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: aee7eaec63615a140875362876478679, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -289,6 +320,11 @@ MonoBehaviour:
   _jumpVelocity: 5
   _wallJumpVelocityX: 5
   _wallJumpVelocityY: 5
+  risingTime: 2
+  jumpingTime: 1.9
+  risingSpeed: 1.5
+  whereToGo: {fileID: 3851846859489227813}
+  whereSpeed: 2
   _isDoubleJump: 1
   _pushingWall: 0
   _facingRight: 1
@@ -333,8 +369,8 @@ MonoBehaviour:
   _wallSide: 0
   _collisionRadius: 0.05
   _bottomOffset: {x: 0, y: -0.94}
-  _rightOffset: {x: 0.35, y: 0}
-  _leftOffset: {x: -0.39, y: 0}
+  _rightOffset: {x: 0.28, y: 0}
+  _leftOffset: {x: -0.3, y: 0}
   _playerShooting: {fileID: 0}
 --- !u!114 &7506924741823340932
 MonoBehaviour:
@@ -355,9 +391,15 @@ MonoBehaviour:
   _ammoBelt: {fileID: 4727474548687761508}
   _launchForce: 10
   newHalo: {fileID: 0}
+  green: {fileID: 3407445583601860651, guid: 0bb5079def34222469224d2898feefee, type: 3}
+  blue: {fileID: 590794714753663215, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
+  red: {fileID: 5262200028308345525, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
+  isGreen: 0
+  isBlue: 0
+  isRed: 0
   _ammoCount: 2
   _canShoot: 0
-  shooting: 0
+  shooting: 1
   _ammoLineup: []
   _playerMovement: {fileID: 8233678256866150519}
 --- !u!95 &5659680942542709836

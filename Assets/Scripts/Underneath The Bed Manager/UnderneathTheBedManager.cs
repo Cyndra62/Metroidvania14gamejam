@@ -11,6 +11,7 @@ public class UnderneathTheBedManager : MonoBehaviour
     private float counterInLevel;
     public Transform playerSpawnPoint;
     public bool isSaved;
+    public GameObject uiHealthVisual, uiHalosVisual;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class UnderneathTheBedManager : MonoBehaviour
 
     private void Start()
     {
+        uiHalosVisual.SetActive(true);
+        uiHealthVisual.SetActive(true);
         if (IsSavedScene.instance.isContinue == true)
         {
             GameManager.instance.LoadData();

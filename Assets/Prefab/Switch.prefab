@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4698966603984510189}
   m_Layer: 6
   m_Name: Switch
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,10 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71aa65c58402c5845a8943cf902a2548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSwitch: {fileID: 0}
+  platform1: {fileID: 0}
+  platform2: {fileID: 0}
+  platform3: {fileID: 0}
   downSprite: {fileID: 21300000, guid: 7466147168daeb54895d9aaa110fec38, type: 3}
   upSprite: {fileID: 21300000, guid: a229926f8631be642a31dbec75d3a866, type: 3}
   activateOnSwitch: 1
+  switch1: 1
+  switch2: 0
+  switch3: 0
 --- !u!61 &4698966603984510191
 BoxCollider2D:
   m_ObjectHideFlags: 0

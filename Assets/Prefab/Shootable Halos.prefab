@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 7832988256110138928}
   m_Layer: 0
   m_Name: Shootable Halos
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5262200028308345529, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5262200028308345529, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: m_SortingLayerID
@@ -339,11 +339,15 @@ PrefabInstance:
       objectReference: {fileID: 8823915521863620655}
     - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: gravityTime
-      value: 11
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
+      propertyPath: gravity2Time
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: sphereRadius
@@ -355,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985624917619818361, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
       propertyPath: bulletTimeReset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e029d4cffe9c78044b6645e93cb17efe, type: 3}
@@ -382,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 590794714753663210, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 590794714753663210, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: m_SortingLayerID
@@ -446,11 +450,15 @@ PrefabInstance:
       objectReference: {fileID: 6354391569598606709}
     - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: gravityTime
-      value: 11
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
+      propertyPath: gravity2Time
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: sphereRadius
@@ -462,7 +470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3541932585403845822, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
       propertyPath: bulletTimeReset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9b829b1e83c0c5419d926f9e5abbc42, type: 3}
@@ -541,7 +549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407445583601860654, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3407445583601860654, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: m_SortingLayerID
@@ -553,11 +561,15 @@ PrefabInstance:
       objectReference: {fileID: 8830400060375123666}
     - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: gravityTime
-      value: 11
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
+      propertyPath: gravity2Time
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: sphereRadius
@@ -569,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8571585080225568028, guid: 0bb5079def34222469224d2898feefee, type: 3}
       propertyPath: bulletTimeReset
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bb5079def34222469224d2898feefee, type: 3}

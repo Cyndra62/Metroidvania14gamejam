@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public static PlayerShooting instance;
     [Header ("Player Info")]
     public GameObject _player;
     public Transform _shotPoint;
@@ -17,7 +18,9 @@ public class PlayerShooting : MonoBehaviour
     private float _rotZ;
 
     [Space]
-    [SerializeField] private GameObject newHalo;
+    [SerializeField] public GameObject newHalo;
+    [SerializeField] public GameObject green, blue, red;
+    [SerializeField] public bool isGreen, isBlue, isRed;
 
     [Header ("Ammo Info")]
     [SerializeField] public int _ammoCount;
@@ -29,9 +32,28 @@ public class PlayerShooting : MonoBehaviour
     public PlayerMovement _playerMovement;
     private HaloProjectile _haloProjectile;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+
+        }
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start() 
     {
+        isGreen = true;
+        isBlue = true;
+        isRed = true;
         shooting = false;
         _playerArm = _player.transform.GetChild(0).gameObject;
         _playerMovement = GetComponent<PlayerMovement>();
@@ -67,13 +89,16 @@ public class PlayerShooting : MonoBehaviour
     {
         if (!shooting && !PauseMenu.instance.isPause && Input.GetMouseButtonDown(0))
         {
+            
             Shoot();
             //FindObjectOfType<HaloProjectile>().counterBulletReset = FindObjectOfType<HaloProjectile>().bulletTimeReset;
         }
+
+       
     }
     void Shoot()
     {
-        
+       
         string haloName;
         if(_ammoCount >=0)
         {
@@ -89,6 +114,8 @@ public class PlayerShooting : MonoBehaviour
             {
                 //IsSavedScene.instance.canTravel = true;
                 newHalo =_ammoLineup[_ammoCount].gameObject;
+                //newHalo.GetComponent<HaloProjectile>()._haloColor = green;
+                
             }
             else if(_ammoCount==1)
             {
@@ -124,7 +151,7 @@ public class PlayerShooting : MonoBehaviour
             }
             _ammoLineup.RemoveAt(_ammoCount);
             _ammoCount--;
-            }
+        }
     }
 
     public void Reload(GameObject halo, string haloColor)

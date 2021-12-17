@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public GameObject fadeScreen;
     [SerializeField] GameObject continueButton;
     [SerializeField] public GameObject mainMenu;
+    public GameObject uiHealthVisual, uiHalosVisual;
     
     
     
@@ -49,11 +50,11 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        if(IsSavedScene.instance.canShoot)
+        /*if(IsSavedScene.instance.canShoot)
         {
             FindObjectOfType<PlayerShooting>().shooting = true;
             FindObjectOfType<PlayerShooting>()._canShoot = false;
-        }
+        }*/
 
        //PauseMenu.instance.isPause = false;
     }
@@ -80,10 +81,22 @@ public class MainMenu : MonoBehaviour
     {
         UiFade.instance.FadeToBlack();
         PlayerPrefs.DeleteAll();
-        PlayerMovement.instance.areaTransitionName = "Start";
+        Player.instance.areaTransitionName = "Start";
         IsSavedScene.instance.isContinue = true;
+        IsSavedScene.instance.switchIsOn1ToyBox = false;
+        IsSavedScene.instance.switchIsOn2UnderTheBed = false;
+        IsSavedScene.instance.switchIsOn3UnderTheBed = false;
+        IsSavedScene.instance.switchIsOn01DoorUnder = false;
+        IsSavedScene.instance.switchIsOn02DoorUnder = false;
+        IsSavedScene.instance.sUnderOnPl1 = false;
+        IsSavedScene.instance.sUnderDoorOff3 = false;
+        IsSavedScene.instance.sTheHub2 = false;
         IsSavedScene.instance.switchIsOn = false;
         IsSavedScene.instance.canShoot = true;
+        IsSavedScene.instance.gateSave1 = true;
+        IsSavedScene.instance.gateSave2 = false;
+        IsSavedScene.instance.gateSave3 = false;
+        IsSavedScene.instance.gateSave4 = false;
         StartCoroutine(NewGameCo());
 
     }
@@ -102,6 +115,8 @@ public class MainMenu : MonoBehaviour
         //IsSavedScene.instance.isContinue = true;
         //GameManager.instance.LoadData();
         IsSavedScene.instance.isContinue = false;
+        uiHalosVisual.SetActive(true);
+        uiHealthVisual.SetActive(true);
         
     }
 
